@@ -710,6 +710,15 @@ h6 {
   display: inline-block;
 }
 
+.footer__logo img {
+  width: 16rem;
+  height: 3.875rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
 .footer__policy {
   color: var(--mainGrey);
   line-height: 2.1875;
