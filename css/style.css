@@ -585,6 +585,15 @@ h6 {
           flex: 0 1 16rem;
 }
 
+.header__logo img {
+  width: 16rem;
+  height: 3.875rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
 .header__actions {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1136,6 +1145,10 @@ h6 {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5625rem;
   }
+
+  .news-items {
+    padding-bottom: 7.5rem;
+  }
 }
 
 @media (min-width: 47.99875em) and (any-hover: hover) {
@@ -1245,6 +1258,7 @@ h6 {
 
   .header__logo img {
     width: 12.5rem;
+    height: 3rem;
   }
 
   .header_authorized .menu__list {
@@ -1344,6 +1358,11 @@ h6 {
 
   .icon-menu {
     display: block;
+  }
+
+  .icon-menu img {
+    width: 1.125rem;
+    height: 1.0625rem;
   }
 
   .sign-in,
