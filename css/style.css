@@ -1254,6 +1254,14 @@ h6 {
   }
 }
 
+@media (max-width: 68.75em) {
+  .footer__menu {
+    -webkit-column-gap: 1.875rem;
+       -moz-column-gap: 1.875rem;
+            column-gap: 1.875rem;
+  }
+}
+
 @media (max-width: 61.99875em) {
   .subtitle {
     font-size: 2.1875rem;
@@ -1282,6 +1290,11 @@ h6 {
 
   .footer__item {
     gap: 0.625rem;
+  }
+
+  .footer__menu {
+    -ms-grid-columns: (1fr)[4];
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .card-news_row {
@@ -1623,19 +1636,6 @@ h6 {
         -ms-flex-direction: column;
             flex-direction: column;
     gap: 2.5rem;
-  }
-
-  .footer__menu {
-    -ms-grid-columns: (1fr)[4];
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (min-width: 47.99875em) and (max-width: 68.75em) {
-  .footer__menu {
-    -webkit-column-gap: 1.875rem;
-       -moz-column-gap: 1.875rem;
-            column-gap: 1.875rem;
   }
 }
 
