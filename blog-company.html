@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Новости</title>
+	<title>Блоги компании</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/style.min.css?_v=20231213140851">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +79,7 @@
 				</div>
 			</div>
 		</header>
-		<main class="page page_news">
+		<main class="page page_blog-company">
 			<div class="cta">
 				<div class="cta__container">
 					<ul class="breadcrumps">
@@ -93,30 +93,59 @@
 					<a href="#" class="cta__button _icon-right-arrow">Вернутся назад</a>
 				</div>
 			</div>
-			<section class="header-block header-block_news">
+			<section class="header-block header-block_blog-company">
 				<div class="header-block__container">
 					<div class="header-block__header">
-						<div class="header-block__inner">
-							<h1 class="header-block__title title">Новости</h1>
-							<div data-da=".header-block__header,800,2" class="header-block__actions">
-								<form action="#" class="header-block__popular">
-									<select name="form[]" class="form">
-										<option value="1" selected>Популярное</option>
-										<option value="2">Пункт №1</option>
-										<option value="3">Пункт №2</option>
-										<option value="4">Пункт №3</option>
-									</select>
-								</form>
-								<button type="button" class="header-block__new">Новое</button>
+						<div class="header-block__company company-block">
+							<div class="company-block__image">
+								<picture><source data-srcset="img/blog-company/company.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/blog-company/company.png" alt="image"></picture>
+							</div>
+							<div class="company-block__body">
+								<h1 class="company-block__name">NIX</h1>
+								<span class="company-block__rating _icon-star">4.21</span>
 							</div>
 						</div>
-						<form data-da=".header-block__inner,800,last" action="#" class="header-block__search search-block ">
+						<form action="#" class="header-block__search search-block search-block_company">
 							<input autocomplete="off" type="text" name="form[]" placeholder="Должность, язык, компания..." class="search-block__input">
 							<button aria-label="search" type="button" class="search-block__button _icon-search"></button>
 						</form>
 					</div>
 				</div>
 			</section>
+			<div class="info-block">
+				<div class="info-block__container">
+					<div class="info-block__inner">
+						<ul class="info-block__list">
+							<li>
+								<a href="tel:+380577840600" class="info-block__link _icon-phone-receiver-silhouette-01">+38 057 784-06-00</a>
+							</li>
+							<li>
+								<a href="mailto:ask@nixsolutions.com" class="info-block__link _icon-mail">ask@nixsolutions.com</a>
+							</li>
+							<li>
+								<a href="#" class="info-block__link _icon-pin">Киев, ул. Йорданская 32</a>
+							</li>
+						</ul>
+						<ul class="info-block__social">
+							<li>
+								<a class="info-block__telegram" href="#">
+									<span style="--icon-telegram: url(img/icons/telegram.svg)"></span>
+								</a>
+							</li>
+							<li>
+								<a class="info-block__facebook" href="#">
+									<span style="--icon-facebook: url(img/icons/facebook.svg)"></span>
+								</a>
+							</li>
+							<li>
+								<a class="info-block__instagram" href="#">
+									<span style="--icon-instagram: url(img/icons/instagram.svg)"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 			<div class="news">
 				<div class="news__container">
 					<div data-mobile="false" class="news__slider swiper">
