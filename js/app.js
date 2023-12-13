@@ -3847,151 +3847,182 @@
         }));
         Swiper.use([ Resize, Observer ]);
         const core = Swiper;
-        function create_element_if_not_defined_createElementIfNotDefined(swiper, originalParams, params, checkProps) {
-            const document = ssr_window_esm_getDocument();
-            if (swiper.params.createElements) Object.keys(checkProps).forEach((key => {
-                if (!params[key] && params.auto === true) {
-                    let element = swiper.$el.children(`.${checkProps[key]}`)[0];
-                    if (!element) {
-                        element = document.createElement("div");
-                        element.className = checkProps[key];
-                        swiper.$el.append(element);
-                    }
-                    params[key] = element;
-                    originalParams[key] = element;
-                }
-            }));
-            return params;
-        }
-        function Navigation({swiper, extendParams, on, emit}) {
+        function Lazy({swiper, extendParams, on, emit}) {
             extendParams({
-                navigation: {
-                    nextEl: null,
-                    prevEl: null,
-                    hideOnClick: false,
-                    disabledClass: "swiper-button-disabled",
-                    hiddenClass: "swiper-button-hidden",
-                    lockClass: "swiper-button-lock",
-                    navigationDisabledClass: "swiper-navigation-disabled"
+                lazy: {
+                    checkInView: false,
+                    enabled: false,
+                    loadPrevNext: false,
+                    loadPrevNextAmount: 1,
+                    loadOnTransitionStart: false,
+                    scrollingElement: "",
+                    elementClass: "swiper-lazy",
+                    loadingClass: "swiper-lazy-loading",
+                    loadedClass: "swiper-lazy-loaded",
+                    preloaderClass: "swiper-lazy-preloader"
                 }
             });
-            swiper.navigation = {
-                nextEl: null,
-                $nextEl: null,
-                prevEl: null,
-                $prevEl: null
-            };
-            function getEl(el) {
-                let $el;
-                if (el) {
-                    $el = dom(el);
-                    if (swiper.params.uniqueNavElements && typeof el === "string" && $el.length > 1 && swiper.$el.find(el).length === 1) $el = swiper.$el.find(el);
+            swiper.lazy = {};
+            let scrollHandlerAttached = false;
+            let initialImageLoaded = false;
+            function loadInSlide(index, loadInDuplicate = true) {
+                const params = swiper.params.lazy;
+                if (typeof index === "undefined") return;
+                if (swiper.slides.length === 0) return;
+                const isVirtual = swiper.virtual && swiper.params.virtual.enabled;
+                const $slideEl = isVirtual ? swiper.$wrapperEl.children(`.${swiper.params.slideClass}[data-swiper-slide-index="${index}"]`) : swiper.slides.eq(index);
+                const $images = $slideEl.find(`.${params.elementClass}:not(.${params.loadedClass}):not(.${params.loadingClass})`);
+                if ($slideEl.hasClass(params.elementClass) && !$slideEl.hasClass(params.loadedClass) && !$slideEl.hasClass(params.loadingClass)) $images.push($slideEl[0]);
+                if ($images.length === 0) return;
+                $images.each((imageEl => {
+                    const $imageEl = dom(imageEl);
+                    $imageEl.addClass(params.loadingClass);
+                    const background = $imageEl.attr("data-background");
+                    const src = $imageEl.attr("data-src");
+                    const srcset = $imageEl.attr("data-srcset");
+                    const sizes = $imageEl.attr("data-sizes");
+                    const $pictureEl = $imageEl.parent("picture");
+                    swiper.loadImage($imageEl[0], src || background, srcset, sizes, false, (() => {
+                        if (typeof swiper === "undefined" || swiper === null || !swiper || swiper && !swiper.params || swiper.destroyed) return;
+                        if (background) {
+                            $imageEl.css("background-image", `url("${background}")`);
+                            $imageEl.removeAttr("data-background");
+                        } else {
+                            if (srcset) {
+                                $imageEl.attr("srcset", srcset);
+                                $imageEl.removeAttr("data-srcset");
+                            }
+                            if (sizes) {
+                                $imageEl.attr("sizes", sizes);
+                                $imageEl.removeAttr("data-sizes");
+                            }
+                            if ($pictureEl.length) $pictureEl.children("source").each((sourceEl => {
+                                const $source = dom(sourceEl);
+                                if ($source.attr("data-srcset")) {
+                                    $source.attr("srcset", $source.attr("data-srcset"));
+                                    $source.removeAttr("data-srcset");
+                                }
+                            }));
+                            if (src) {
+                                $imageEl.attr("src", src);
+                                $imageEl.removeAttr("data-src");
+                            }
+                        }
+                        $imageEl.addClass(params.loadedClass).removeClass(params.loadingClass);
+                        $slideEl.find(`.${params.preloaderClass}`).remove();
+                        if (swiper.params.loop && loadInDuplicate) {
+                            const slideOriginalIndex = $slideEl.attr("data-swiper-slide-index");
+                            if ($slideEl.hasClass(swiper.params.slideDuplicateClass)) {
+                                const originalSlide = swiper.$wrapperEl.children(`[data-swiper-slide-index="${slideOriginalIndex}"]:not(.${swiper.params.slideDuplicateClass})`);
+                                loadInSlide(originalSlide.index(), false);
+                            } else {
+                                const duplicatedSlide = swiper.$wrapperEl.children(`.${swiper.params.slideDuplicateClass}[data-swiper-slide-index="${slideOriginalIndex}"]`);
+                                loadInSlide(duplicatedSlide.index(), false);
+                            }
+                        }
+                        emit("lazyImageReady", $slideEl[0], $imageEl[0]);
+                        if (swiper.params.autoHeight) swiper.updateAutoHeight();
+                    }));
+                    emit("lazyImageLoad", $slideEl[0], $imageEl[0]);
+                }));
+            }
+            function load() {
+                const {$wrapperEl, params: swiperParams, slides, activeIndex} = swiper;
+                const isVirtual = swiper.virtual && swiperParams.virtual.enabled;
+                const params = swiperParams.lazy;
+                let slidesPerView = swiperParams.slidesPerView;
+                if (slidesPerView === "auto") slidesPerView = 0;
+                function slideExist(index) {
+                    if (isVirtual) {
+                        if ($wrapperEl.children(`.${swiperParams.slideClass}[data-swiper-slide-index="${index}"]`).length) return true;
+                    } else if (slides[index]) return true;
+                    return false;
                 }
-                return $el;
-            }
-            function toggleEl($el, disabled) {
-                const params = swiper.params.navigation;
-                if ($el && $el.length > 0) {
-                    $el[disabled ? "addClass" : "removeClass"](params.disabledClass);
-                    if ($el[0] && $el[0].tagName === "BUTTON") $el[0].disabled = disabled;
-                    if (swiper.params.watchOverflow && swiper.enabled) $el[swiper.isLocked ? "addClass" : "removeClass"](params.lockClass);
+                function slideIndex(slideEl) {
+                    if (isVirtual) return dom(slideEl).attr("data-swiper-slide-index");
+                    return dom(slideEl).index();
+                }
+                if (!initialImageLoaded) initialImageLoaded = true;
+                if (swiper.params.watchSlidesProgress) $wrapperEl.children(`.${swiperParams.slideVisibleClass}`).each((slideEl => {
+                    const index = isVirtual ? dom(slideEl).attr("data-swiper-slide-index") : dom(slideEl).index();
+                    loadInSlide(index);
+                })); else if (slidesPerView > 1) {
+                    for (let i = activeIndex; i < activeIndex + slidesPerView; i += 1) if (slideExist(i)) loadInSlide(i);
+                } else loadInSlide(activeIndex);
+                if (params.loadPrevNext) if (slidesPerView > 1 || params.loadPrevNextAmount && params.loadPrevNextAmount > 1) {
+                    const amount = params.loadPrevNextAmount;
+                    const spv = Math.ceil(slidesPerView);
+                    const maxIndex = Math.min(activeIndex + spv + Math.max(amount, spv), slides.length);
+                    const minIndex = Math.max(activeIndex - Math.max(spv, amount), 0);
+                    for (let i = activeIndex + spv; i < maxIndex; i += 1) if (slideExist(i)) loadInSlide(i);
+                    for (let i = minIndex; i < activeIndex; i += 1) if (slideExist(i)) loadInSlide(i);
+                } else {
+                    const nextSlide = $wrapperEl.children(`.${swiperParams.slideNextClass}`);
+                    if (nextSlide.length > 0) loadInSlide(slideIndex(nextSlide));
+                    const prevSlide = $wrapperEl.children(`.${swiperParams.slidePrevClass}`);
+                    if (prevSlide.length > 0) loadInSlide(slideIndex(prevSlide));
                 }
             }
-            function update() {
-                if (swiper.params.loop) return;
-                const {$nextEl, $prevEl} = swiper.navigation;
-                toggleEl($prevEl, swiper.isBeginning && !swiper.params.rewind);
-                toggleEl($nextEl, swiper.isEnd && !swiper.params.rewind);
-            }
-            function onPrevClick(e) {
-                e.preventDefault();
-                if (swiper.isBeginning && !swiper.params.loop && !swiper.params.rewind) return;
-                swiper.slidePrev();
-                emit("navigationPrev");
-            }
-            function onNextClick(e) {
-                e.preventDefault();
-                if (swiper.isEnd && !swiper.params.loop && !swiper.params.rewind) return;
-                swiper.slideNext();
-                emit("navigationNext");
-            }
-            function init() {
-                const params = swiper.params.navigation;
-                swiper.params.navigation = create_element_if_not_defined_createElementIfNotDefined(swiper, swiper.originalParams.navigation, swiper.params.navigation, {
-                    nextEl: "swiper-button-next",
-                    prevEl: "swiper-button-prev"
-                });
-                if (!(params.nextEl || params.prevEl)) return;
-                const $nextEl = getEl(params.nextEl);
-                const $prevEl = getEl(params.prevEl);
-                if ($nextEl && $nextEl.length > 0) $nextEl.on("click", onNextClick);
-                if ($prevEl && $prevEl.length > 0) $prevEl.on("click", onPrevClick);
-                Object.assign(swiper.navigation, {
-                    $nextEl,
-                    nextEl: $nextEl && $nextEl[0],
-                    $prevEl,
-                    prevEl: $prevEl && $prevEl[0]
-                });
-                if (!swiper.enabled) {
-                    if ($nextEl) $nextEl.addClass(params.lockClass);
-                    if ($prevEl) $prevEl.addClass(params.lockClass);
+            function checkInViewOnLoad() {
+                const window = ssr_window_esm_getWindow();
+                if (!swiper || swiper.destroyed) return;
+                const $scrollElement = swiper.params.lazy.scrollingElement ? dom(swiper.params.lazy.scrollingElement) : dom(window);
+                const isWindow = $scrollElement[0] === window;
+                const scrollElementWidth = isWindow ? window.innerWidth : $scrollElement[0].offsetWidth;
+                const scrollElementHeight = isWindow ? window.innerHeight : $scrollElement[0].offsetHeight;
+                const swiperOffset = swiper.$el.offset();
+                const {rtlTranslate: rtl} = swiper;
+                let inView = false;
+                if (rtl) swiperOffset.left -= swiper.$el[0].scrollLeft;
+                const swiperCoord = [ [ swiperOffset.left, swiperOffset.top ], [ swiperOffset.left + swiper.width, swiperOffset.top ], [ swiperOffset.left, swiperOffset.top + swiper.height ], [ swiperOffset.left + swiper.width, swiperOffset.top + swiper.height ] ];
+                for (let i = 0; i < swiperCoord.length; i += 1) {
+                    const point = swiperCoord[i];
+                    if (point[0] >= 0 && point[0] <= scrollElementWidth && point[1] >= 0 && point[1] <= scrollElementHeight) {
+                        if (point[0] === 0 && point[1] === 0) continue;
+                        inView = true;
+                    }
+                }
+                const passiveListener = swiper.touchEvents.start === "touchstart" && swiper.support.passiveListener && swiper.params.passiveListeners ? {
+                    passive: true,
+                    capture: false
+                } : false;
+                if (inView) {
+                    load();
+                    $scrollElement.off("scroll", checkInViewOnLoad, passiveListener);
+                } else if (!scrollHandlerAttached) {
+                    scrollHandlerAttached = true;
+                    $scrollElement.on("scroll", checkInViewOnLoad, passiveListener);
                 }
             }
-            function destroy() {
-                const {$nextEl, $prevEl} = swiper.navigation;
-                if ($nextEl && $nextEl.length) {
-                    $nextEl.off("click", onNextClick);
-                    $nextEl.removeClass(swiper.params.navigation.disabledClass);
-                }
-                if ($prevEl && $prevEl.length) {
-                    $prevEl.off("click", onPrevClick);
-                    $prevEl.removeClass(swiper.params.navigation.disabledClass);
-                }
-            }
-            on("init", (() => {
-                if (swiper.params.navigation.enabled === false) disable(); else {
-                    init();
-                    update();
-                }
+            on("beforeInit", (() => {
+                if (swiper.params.lazy.enabled && swiper.params.preloadImages) swiper.params.preloadImages = false;
             }));
-            on("toEdge fromEdge lock unlock", (() => {
-                update();
+            on("init", (() => {
+                if (swiper.params.lazy.enabled) if (swiper.params.lazy.checkInView) checkInViewOnLoad(); else load();
+            }));
+            on("scroll", (() => {
+                if (swiper.params.freeMode && swiper.params.freeMode.enabled && !swiper.params.freeMode.sticky) load();
+            }));
+            on("scrollbarDragMove resize _freeModeNoMomentumRelease", (() => {
+                if (swiper.params.lazy.enabled) if (swiper.params.lazy.checkInView) checkInViewOnLoad(); else load();
+            }));
+            on("transitionStart", (() => {
+                if (swiper.params.lazy.enabled) if (swiper.params.lazy.loadOnTransitionStart || !swiper.params.lazy.loadOnTransitionStart && !initialImageLoaded) if (swiper.params.lazy.checkInView) checkInViewOnLoad(); else load();
+            }));
+            on("transitionEnd", (() => {
+                if (swiper.params.lazy.enabled && !swiper.params.lazy.loadOnTransitionStart) if (swiper.params.lazy.checkInView) checkInViewOnLoad(); else load();
+            }));
+            on("slideChange", (() => {
+                const {lazy, cssMode, watchSlidesProgress, touchReleaseOnEdges, resistanceRatio} = swiper.params;
+                if (lazy.enabled && (cssMode || watchSlidesProgress && (touchReleaseOnEdges || resistanceRatio === 0))) load();
             }));
             on("destroy", (() => {
-                destroy();
+                if (!swiper.$el) return;
+                swiper.$el.find(`.${swiper.params.lazy.loadingClass}`).removeClass(swiper.params.lazy.loadingClass);
             }));
-            on("enable disable", (() => {
-                const {$nextEl, $prevEl} = swiper.navigation;
-                if ($nextEl) $nextEl[swiper.enabled ? "removeClass" : "addClass"](swiper.params.navigation.lockClass);
-                if ($prevEl) $prevEl[swiper.enabled ? "removeClass" : "addClass"](swiper.params.navigation.lockClass);
-            }));
-            on("click", ((_s, e) => {
-                const {$nextEl, $prevEl} = swiper.navigation;
-                const targetEl = e.target;
-                if (swiper.params.navigation.hideOnClick && !dom(targetEl).is($prevEl) && !dom(targetEl).is($nextEl)) {
-                    if (swiper.pagination && swiper.params.pagination && swiper.params.pagination.clickable && (swiper.pagination.el === targetEl || swiper.pagination.el.contains(targetEl))) return;
-                    let isHidden;
-                    if ($nextEl) isHidden = $nextEl.hasClass(swiper.params.navigation.hiddenClass); else if ($prevEl) isHidden = $prevEl.hasClass(swiper.params.navigation.hiddenClass);
-                    if (isHidden === true) emit("navigationShow"); else emit("navigationHide");
-                    if ($nextEl) $nextEl.toggleClass(swiper.params.navigation.hiddenClass);
-                    if ($prevEl) $prevEl.toggleClass(swiper.params.navigation.hiddenClass);
-                }
-            }));
-            const enable = () => {
-                swiper.$el.removeClass(swiper.params.navigation.navigationDisabledClass);
-                init();
-                update();
-            };
-            const disable = () => {
-                swiper.$el.addClass(swiper.params.navigation.navigationDisabledClass);
-                destroy();
-            };
-            Object.assign(swiper.navigation, {
-                enable,
-                disable,
-                update,
-                init,
-                destroy
+            Object.assign(swiper.lazy, {
+                load,
+                loadInSlide
             });
         }
         function initSliders() {
@@ -4003,7 +4034,7 @@
                     function mobileSlider() {
                         if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
                             mySwiper = new core(".news__slider", {
-                                modules: [ Navigation ],
+                                modules: [ Lazy ],
                                 observer: true,
                                 observeParents: true,
                                 slidesPerView: 2,
@@ -4011,9 +4042,8 @@
                                 spaceBetween: 10,
                                 loop: true,
                                 speed: 800,
-                                navigation: {
-                                    prevEl: ".swiper-button-prev",
-                                    nextEl: ".swiper-button-next"
+                                lazy: {
+                                    loadPrevNext: true
                                 },
                                 breakpoints: {
                                     320: {

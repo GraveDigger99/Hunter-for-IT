@@ -4,9 +4,7 @@
 <head>
 	<title>News</title>
 	<meta charset="UTF-8">
-	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20231213095845">
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231213104354">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -82,9 +80,9 @@
 			</div>
 		</header>
 		<main class="page page_news">
-			<section class="cta">
+			<div class="cta">
 				<div class="cta__container">
-					<ul class="news__breadcrumps breadcrumps">
+					<ul class="breadcrumps">
 						<li class="breadcrumps__item breadcrumps__item_active">
 							<a target="_blank" href="index.html" class="breadcrumps__link">Главная</a>
 						</li>
@@ -92,9 +90,9 @@
 							Вакансии
 						</li>
 					</ul>
-					<a href="#" type="button" class="cta__button _icon-right-arrow">Вернутся назад</a>
+					<a href="#" class="cta__button _icon-right-arrow">Вернутся назад</a>
 				</div>
-			</section>
+			</div>
 			<section class="header-block">
 				<div class="header-block__container">
 					<div class="header-block__header">
@@ -119,14 +117,14 @@
 					</div>
 				</div>
 			</section>
-			<section class="news">
+			<div class="news">
 				<div class="news__container">
 					<div data-mobile="false" class="news__slider swiper">
 						<div class="news__wrapper swiper-wrapper">
 							<div class="news__slide swiper-slide">
 								<div class="news__card card-news">
 									<a target="_blank" href="#" class="card-news__image">
-										<picture><source srcset="img/news/01.webp" type="image/webp"><img src="img/news/01.jpg" alt="image"></picture>
+										<picture><source data-srcset="#" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/news/01.jpg" src="#" loading="lazy" alt="image"></picture>
 									</a>
 									<div class="card-news__content">
 										<time datetime="2022-01-08" class="card-news__date date">08 янв 2022</time>
@@ -142,11 +140,12 @@
 										<a href="#" class="card-news__button button-readmore _icon-right-arrow">Читать больше</a>
 									</div>
 								</div>
+								<div class="swiper-lazy-preloader"></div>
 							</div>
 							<div class="news__slide swiper-slide">
 								<div class="news__card card-news">
 									<a target="_blank" href="#" class="card-news__image">
-										<picture><source data-srcset="img/news/02.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/news/02.jpg" loading="lazy" alt="image"></picture>
+										<picture><source data-srcset="#" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/news/02.jpg" src="#" loading="lazy" alt="image"></picture>
 									</a>
 									<div class="card-news__content">
 										<time datetime="2022-01-08" class="card-news__date date">08 янв 2022</time>
@@ -162,12 +161,13 @@
 										<a href="#" class="card-news__button button-readmore _icon-right-arrow">Читать больше</a>
 									</div>
 								</div>
+								<div class="swiper-lazy-preloader"></div>
 							</div>
 							<div class="news__slide swiper-slide">
 								<div class="news__card card-news">
 									<div class="news__card card-news">
 										<a target="_blank" href="#" class="card-news__image">
-											<picture><source data-srcset="img/news/03.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/news/03.jpg" loading="lazy" alt="image"></picture>
+											<picture><source data-srcset="#" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/news/02.jpg" src="#" loading="lazy" alt="image"></picture>
 										</a>
 										<div class="card-news__content">
 											<time datetime="2022-01-08" class="card-news__date date">08 янв 2022</time>
@@ -185,11 +185,12 @@
 										</div>
 									</div>
 								</div>
+								<div class="swiper-lazy-preloader"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
+			</div>
 			<section class="instructions-news">
 				<div class="instructions-news__container">
 					<div class="instructions-news__body">
@@ -213,10 +214,10 @@
 						</a>
 						<div class="card-news__content">
 							<time datetime="2022-01-08" class="card-news__date date">08 янв 2022</time>
-							<div class="card-news__label">
+							<h3 class="card-news__label">
 								Темная тема на сайте: инструкция
 								по применению
-							</div>
+							</h3>
 							<p class="card-news__text">
 								Вслед за Apple и Google многие компании начали добавлять
 								в свои приложения и на сайты темную тему. Она помогает
@@ -231,10 +232,10 @@
 						</a>
 						<div class="card-news__content">
 							<time datetime="2022-01-08" class="card-news__date date">08 янв 2022</time>
-							<div class="card-news__label">
+							<h3 class="card-news__label">
 								Темная тема на сайте: инструкция
 								по применению
-							</div>
+							</h3>
 							<p class="card-news__text">
 								Вслед за Apple и Google многие компании начали добавлять
 								в свои приложения и на сайты темную тему. Она помогает
@@ -249,10 +250,10 @@
 						</a>
 						<div class="card-news__content">
 							<time datetime="2022-01-08" class="card-news__date date">08 янв 2022</time>
-							<div class="card-news__label">
+							<h3 class="card-news__label">
 								Темная тема на сайте: инструкция
 								по применению
-							</div>
+							</h3>
 							<p class="card-news__text">
 								Вслед за Apple и Google многие компании начали добавлять
 								в свои приложения и на сайты темную тему. Она помогает
@@ -380,7 +381,7 @@
 		</div>
 	</div>
 </div> -->
-	<script src="js/app.min.js?_v=20231213095845"></script>
+	<script src="js/app.min.js?_v=20231213104354"></script>
 </body>
 
 </html>
