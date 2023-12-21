@@ -677,7 +677,7 @@
             selectBuild(originalSelect) {
                 const selectItem = originalSelect.parentElement;
                 selectItem.dataset.id = originalSelect.dataset.id;
-                originalSelect.dataset.classModif ? selectItem.classList.add(`select_${originalSelect.dataset.classModif}`) : null;
+                selectItem.classList.add(originalSelect.getAttribute("class") ? `select_${originalSelect.getAttribute("class")}` : "");
                 originalSelect.multiple ? selectItem.classList.add(this.selectClasses.classSelectMultiple) : selectItem.classList.remove(this.selectClasses.classSelectMultiple);
                 originalSelect.hasAttribute("data-checkbox") && originalSelect.multiple ? selectItem.classList.add(this.selectClasses.classSelectCheckBox) : selectItem.classList.remove(this.selectClasses.classSelectCheckBox);
                 this.setSelectTitleValue(selectItem, originalSelect);
@@ -3847,227 +3847,1081 @@
         }));
         Swiper.use([ Resize, Observer ]);
         const core = Swiper;
-        function Lazy({swiper, extendParams, on, emit}) {
+        function create_element_if_not_defined_createElementIfNotDefined(swiper, originalParams, params, checkProps) {
+            const document = ssr_window_esm_getDocument();
+            if (swiper.params.createElements) Object.keys(checkProps).forEach((key => {
+                if (!params[key] && params.auto === true) {
+                    let element = swiper.$el.children(`.${checkProps[key]}`)[0];
+                    if (!element) {
+                        element = document.createElement("div");
+                        element.className = checkProps[key];
+                        swiper.$el.append(element);
+                    }
+                    params[key] = element;
+                    originalParams[key] = element;
+                }
+            }));
+            return params;
+        }
+        function Navigation({swiper, extendParams, on, emit}) {
             extendParams({
-                lazy: {
-                    checkInView: false,
-                    enabled: false,
-                    loadPrevNext: false,
-                    loadPrevNextAmount: 1,
-                    loadOnTransitionStart: false,
-                    scrollingElement: "",
-                    elementClass: "swiper-lazy",
-                    loadingClass: "swiper-lazy-loading",
-                    loadedClass: "swiper-lazy-loaded",
-                    preloaderClass: "swiper-lazy-preloader"
+                navigation: {
+                    nextEl: null,
+                    prevEl: null,
+                    hideOnClick: false,
+                    disabledClass: "swiper-button-disabled",
+                    hiddenClass: "swiper-button-hidden",
+                    lockClass: "swiper-button-lock",
+                    navigationDisabledClass: "swiper-navigation-disabled"
                 }
             });
-            swiper.lazy = {};
-            let scrollHandlerAttached = false;
-            let initialImageLoaded = false;
-            function loadInSlide(index, loadInDuplicate = true) {
-                const params = swiper.params.lazy;
-                if (typeof index === "undefined") return;
-                if (swiper.slides.length === 0) return;
-                const isVirtual = swiper.virtual && swiper.params.virtual.enabled;
-                const $slideEl = isVirtual ? swiper.$wrapperEl.children(`.${swiper.params.slideClass}[data-swiper-slide-index="${index}"]`) : swiper.slides.eq(index);
-                const $images = $slideEl.find(`.${params.elementClass}:not(.${params.loadedClass}):not(.${params.loadingClass})`);
-                if ($slideEl.hasClass(params.elementClass) && !$slideEl.hasClass(params.loadedClass) && !$slideEl.hasClass(params.loadingClass)) $images.push($slideEl[0]);
-                if ($images.length === 0) return;
-                $images.each((imageEl => {
-                    const $imageEl = dom(imageEl);
-                    $imageEl.addClass(params.loadingClass);
-                    const background = $imageEl.attr("data-background");
-                    const src = $imageEl.attr("data-src");
-                    const srcset = $imageEl.attr("data-srcset");
-                    const sizes = $imageEl.attr("data-sizes");
-                    const $pictureEl = $imageEl.parent("picture");
-                    swiper.loadImage($imageEl[0], src || background, srcset, sizes, false, (() => {
-                        if (typeof swiper === "undefined" || swiper === null || !swiper || swiper && !swiper.params || swiper.destroyed) return;
-                        if (background) {
-                            $imageEl.css("background-image", `url("${background}")`);
-                            $imageEl.removeAttr("data-background");
-                        } else {
-                            if (srcset) {
-                                $imageEl.attr("srcset", srcset);
-                                $imageEl.removeAttr("data-srcset");
-                            }
-                            if (sizes) {
-                                $imageEl.attr("sizes", sizes);
-                                $imageEl.removeAttr("data-sizes");
-                            }
-                            if ($pictureEl.length) $pictureEl.children("source").each((sourceEl => {
-                                const $source = dom(sourceEl);
-                                if ($source.attr("data-srcset")) {
-                                    $source.attr("srcset", $source.attr("data-srcset"));
-                                    $source.removeAttr("data-srcset");
-                                }
-                            }));
-                            if (src) {
-                                $imageEl.attr("src", src);
-                                $imageEl.removeAttr("data-src");
-                            }
-                        }
-                        $imageEl.addClass(params.loadedClass).removeClass(params.loadingClass);
-                        $slideEl.find(`.${params.preloaderClass}`).remove();
-                        if (swiper.params.loop && loadInDuplicate) {
-                            const slideOriginalIndex = $slideEl.attr("data-swiper-slide-index");
-                            if ($slideEl.hasClass(swiper.params.slideDuplicateClass)) {
-                                const originalSlide = swiper.$wrapperEl.children(`[data-swiper-slide-index="${slideOriginalIndex}"]:not(.${swiper.params.slideDuplicateClass})`);
-                                loadInSlide(originalSlide.index(), false);
-                            } else {
-                                const duplicatedSlide = swiper.$wrapperEl.children(`.${swiper.params.slideDuplicateClass}[data-swiper-slide-index="${slideOriginalIndex}"]`);
-                                loadInSlide(duplicatedSlide.index(), false);
-                            }
-                        }
-                        emit("lazyImageReady", $slideEl[0], $imageEl[0]);
-                        if (swiper.params.autoHeight) swiper.updateAutoHeight();
-                    }));
-                    emit("lazyImageLoad", $slideEl[0], $imageEl[0]);
-                }));
+            swiper.navigation = {
+                nextEl: null,
+                $nextEl: null,
+                prevEl: null,
+                $prevEl: null
+            };
+            function getEl(el) {
+                let $el;
+                if (el) {
+                    $el = dom(el);
+                    if (swiper.params.uniqueNavElements && typeof el === "string" && $el.length > 1 && swiper.$el.find(el).length === 1) $el = swiper.$el.find(el);
+                }
+                return $el;
             }
-            function load() {
-                const {$wrapperEl, params: swiperParams, slides, activeIndex} = swiper;
-                const isVirtual = swiper.virtual && swiperParams.virtual.enabled;
-                const params = swiperParams.lazy;
-                let slidesPerView = swiperParams.slidesPerView;
-                if (slidesPerView === "auto") slidesPerView = 0;
-                function slideExist(index) {
-                    if (isVirtual) {
-                        if ($wrapperEl.children(`.${swiperParams.slideClass}[data-swiper-slide-index="${index}"]`).length) return true;
-                    } else if (slides[index]) return true;
-                    return false;
-                }
-                function slideIndex(slideEl) {
-                    if (isVirtual) return dom(slideEl).attr("data-swiper-slide-index");
-                    return dom(slideEl).index();
-                }
-                if (!initialImageLoaded) initialImageLoaded = true;
-                if (swiper.params.watchSlidesProgress) $wrapperEl.children(`.${swiperParams.slideVisibleClass}`).each((slideEl => {
-                    const index = isVirtual ? dom(slideEl).attr("data-swiper-slide-index") : dom(slideEl).index();
-                    loadInSlide(index);
-                })); else if (slidesPerView > 1) {
-                    for (let i = activeIndex; i < activeIndex + slidesPerView; i += 1) if (slideExist(i)) loadInSlide(i);
-                } else loadInSlide(activeIndex);
-                if (params.loadPrevNext) if (slidesPerView > 1 || params.loadPrevNextAmount && params.loadPrevNextAmount > 1) {
-                    const amount = params.loadPrevNextAmount;
-                    const spv = Math.ceil(slidesPerView);
-                    const maxIndex = Math.min(activeIndex + spv + Math.max(amount, spv), slides.length);
-                    const minIndex = Math.max(activeIndex - Math.max(spv, amount), 0);
-                    for (let i = activeIndex + spv; i < maxIndex; i += 1) if (slideExist(i)) loadInSlide(i);
-                    for (let i = minIndex; i < activeIndex; i += 1) if (slideExist(i)) loadInSlide(i);
-                } else {
-                    const nextSlide = $wrapperEl.children(`.${swiperParams.slideNextClass}`);
-                    if (nextSlide.length > 0) loadInSlide(slideIndex(nextSlide));
-                    const prevSlide = $wrapperEl.children(`.${swiperParams.slidePrevClass}`);
-                    if (prevSlide.length > 0) loadInSlide(slideIndex(prevSlide));
+            function toggleEl($el, disabled) {
+                const params = swiper.params.navigation;
+                if ($el && $el.length > 0) {
+                    $el[disabled ? "addClass" : "removeClass"](params.disabledClass);
+                    if ($el[0] && $el[0].tagName === "BUTTON") $el[0].disabled = disabled;
+                    if (swiper.params.watchOverflow && swiper.enabled) $el[swiper.isLocked ? "addClass" : "removeClass"](params.lockClass);
                 }
             }
-            function checkInViewOnLoad() {
-                const window = ssr_window_esm_getWindow();
-                if (!swiper || swiper.destroyed) return;
-                const $scrollElement = swiper.params.lazy.scrollingElement ? dom(swiper.params.lazy.scrollingElement) : dom(window);
-                const isWindow = $scrollElement[0] === window;
-                const scrollElementWidth = isWindow ? window.innerWidth : $scrollElement[0].offsetWidth;
-                const scrollElementHeight = isWindow ? window.innerHeight : $scrollElement[0].offsetHeight;
-                const swiperOffset = swiper.$el.offset();
-                const {rtlTranslate: rtl} = swiper;
-                let inView = false;
-                if (rtl) swiperOffset.left -= swiper.$el[0].scrollLeft;
-                const swiperCoord = [ [ swiperOffset.left, swiperOffset.top ], [ swiperOffset.left + swiper.width, swiperOffset.top ], [ swiperOffset.left, swiperOffset.top + swiper.height ], [ swiperOffset.left + swiper.width, swiperOffset.top + swiper.height ] ];
-                for (let i = 0; i < swiperCoord.length; i += 1) {
-                    const point = swiperCoord[i];
-                    if (point[0] >= 0 && point[0] <= scrollElementWidth && point[1] >= 0 && point[1] <= scrollElementHeight) {
-                        if (point[0] === 0 && point[1] === 0) continue;
-                        inView = true;
-                    }
-                }
-                const passiveListener = swiper.touchEvents.start === "touchstart" && swiper.support.passiveListener && swiper.params.passiveListeners ? {
-                    passive: true,
-                    capture: false
-                } : false;
-                if (inView) {
-                    load();
-                    $scrollElement.off("scroll", checkInViewOnLoad, passiveListener);
-                } else if (!scrollHandlerAttached) {
-                    scrollHandlerAttached = true;
-                    $scrollElement.on("scroll", checkInViewOnLoad, passiveListener);
+            function update() {
+                if (swiper.params.loop) return;
+                const {$nextEl, $prevEl} = swiper.navigation;
+                toggleEl($prevEl, swiper.isBeginning && !swiper.params.rewind);
+                toggleEl($nextEl, swiper.isEnd && !swiper.params.rewind);
+            }
+            function onPrevClick(e) {
+                e.preventDefault();
+                if (swiper.isBeginning && !swiper.params.loop && !swiper.params.rewind) return;
+                swiper.slidePrev();
+                emit("navigationPrev");
+            }
+            function onNextClick(e) {
+                e.preventDefault();
+                if (swiper.isEnd && !swiper.params.loop && !swiper.params.rewind) return;
+                swiper.slideNext();
+                emit("navigationNext");
+            }
+            function init() {
+                const params = swiper.params.navigation;
+                swiper.params.navigation = create_element_if_not_defined_createElementIfNotDefined(swiper, swiper.originalParams.navigation, swiper.params.navigation, {
+                    nextEl: "swiper-button-next",
+                    prevEl: "swiper-button-prev"
+                });
+                if (!(params.nextEl || params.prevEl)) return;
+                const $nextEl = getEl(params.nextEl);
+                const $prevEl = getEl(params.prevEl);
+                if ($nextEl && $nextEl.length > 0) $nextEl.on("click", onNextClick);
+                if ($prevEl && $prevEl.length > 0) $prevEl.on("click", onPrevClick);
+                Object.assign(swiper.navigation, {
+                    $nextEl,
+                    nextEl: $nextEl && $nextEl[0],
+                    $prevEl,
+                    prevEl: $prevEl && $prevEl[0]
+                });
+                if (!swiper.enabled) {
+                    if ($nextEl) $nextEl.addClass(params.lockClass);
+                    if ($prevEl) $prevEl.addClass(params.lockClass);
                 }
             }
-            on("beforeInit", (() => {
-                if (swiper.params.lazy.enabled && swiper.params.preloadImages) swiper.params.preloadImages = false;
-            }));
+            function destroy() {
+                const {$nextEl, $prevEl} = swiper.navigation;
+                if ($nextEl && $nextEl.length) {
+                    $nextEl.off("click", onNextClick);
+                    $nextEl.removeClass(swiper.params.navigation.disabledClass);
+                }
+                if ($prevEl && $prevEl.length) {
+                    $prevEl.off("click", onPrevClick);
+                    $prevEl.removeClass(swiper.params.navigation.disabledClass);
+                }
+            }
             on("init", (() => {
-                if (swiper.params.lazy.enabled) if (swiper.params.lazy.checkInView) checkInViewOnLoad(); else load();
+                if (swiper.params.navigation.enabled === false) disable(); else {
+                    init();
+                    update();
+                }
             }));
-            on("scroll", (() => {
-                if (swiper.params.freeMode && swiper.params.freeMode.enabled && !swiper.params.freeMode.sticky) load();
-            }));
-            on("scrollbarDragMove resize _freeModeNoMomentumRelease", (() => {
-                if (swiper.params.lazy.enabled) if (swiper.params.lazy.checkInView) checkInViewOnLoad(); else load();
-            }));
-            on("transitionStart", (() => {
-                if (swiper.params.lazy.enabled) if (swiper.params.lazy.loadOnTransitionStart || !swiper.params.lazy.loadOnTransitionStart && !initialImageLoaded) if (swiper.params.lazy.checkInView) checkInViewOnLoad(); else load();
-            }));
-            on("transitionEnd", (() => {
-                if (swiper.params.lazy.enabled && !swiper.params.lazy.loadOnTransitionStart) if (swiper.params.lazy.checkInView) checkInViewOnLoad(); else load();
-            }));
-            on("slideChange", (() => {
-                const {lazy, cssMode, watchSlidesProgress, touchReleaseOnEdges, resistanceRatio} = swiper.params;
-                if (lazy.enabled && (cssMode || watchSlidesProgress && (touchReleaseOnEdges || resistanceRatio === 0))) load();
+            on("toEdge fromEdge lock unlock", (() => {
+                update();
             }));
             on("destroy", (() => {
-                if (!swiper.$el) return;
-                swiper.$el.find(`.${swiper.params.lazy.loadingClass}`).removeClass(swiper.params.lazy.loadingClass);
+                destroy();
             }));
-            Object.assign(swiper.lazy, {
-                load,
-                loadInSlide
+            on("enable disable", (() => {
+                const {$nextEl, $prevEl} = swiper.navigation;
+                if ($nextEl) $nextEl[swiper.enabled ? "removeClass" : "addClass"](swiper.params.navigation.lockClass);
+                if ($prevEl) $prevEl[swiper.enabled ? "removeClass" : "addClass"](swiper.params.navigation.lockClass);
+            }));
+            on("click", ((_s, e) => {
+                const {$nextEl, $prevEl} = swiper.navigation;
+                const targetEl = e.target;
+                if (swiper.params.navigation.hideOnClick && !dom(targetEl).is($prevEl) && !dom(targetEl).is($nextEl)) {
+                    if (swiper.pagination && swiper.params.pagination && swiper.params.pagination.clickable && (swiper.pagination.el === targetEl || swiper.pagination.el.contains(targetEl))) return;
+                    let isHidden;
+                    if ($nextEl) isHidden = $nextEl.hasClass(swiper.params.navigation.hiddenClass); else if ($prevEl) isHidden = $prevEl.hasClass(swiper.params.navigation.hiddenClass);
+                    if (isHidden === true) emit("navigationShow"); else emit("navigationHide");
+                    if ($nextEl) $nextEl.toggleClass(swiper.params.navigation.hiddenClass);
+                    if ($prevEl) $prevEl.toggleClass(swiper.params.navigation.hiddenClass);
+                }
+            }));
+            const enable = () => {
+                swiper.$el.removeClass(swiper.params.navigation.navigationDisabledClass);
+                init();
+                update();
+            };
+            const disable = () => {
+                swiper.$el.addClass(swiper.params.navigation.navigationDisabledClass);
+                destroy();
+            };
+            Object.assign(swiper.navigation, {
+                enable,
+                disable,
+                update,
+                init,
+                destroy
+            });
+        }
+        function classes_to_selector_classesToSelector(classes = "") {
+            return `.${classes.trim().replace(/([\.:!\/])/g, "\\$1").replace(/ /g, ".")}`;
+        }
+        function Pagination({swiper, extendParams, on, emit}) {
+            const pfx = "swiper-pagination";
+            extendParams({
+                pagination: {
+                    el: null,
+                    bulletElement: "span",
+                    clickable: false,
+                    hideOnClick: false,
+                    renderBullet: null,
+                    renderProgressbar: null,
+                    renderFraction: null,
+                    renderCustom: null,
+                    progressbarOpposite: false,
+                    type: "bullets",
+                    dynamicBullets: false,
+                    dynamicMainBullets: 1,
+                    formatFractionCurrent: number => number,
+                    formatFractionTotal: number => number,
+                    bulletClass: `${pfx}-bullet`,
+                    bulletActiveClass: `${pfx}-bullet-active`,
+                    modifierClass: `${pfx}-`,
+                    currentClass: `${pfx}-current`,
+                    totalClass: `${pfx}-total`,
+                    hiddenClass: `${pfx}-hidden`,
+                    progressbarFillClass: `${pfx}-progressbar-fill`,
+                    progressbarOppositeClass: `${pfx}-progressbar-opposite`,
+                    clickableClass: `${pfx}-clickable`,
+                    lockClass: `${pfx}-lock`,
+                    horizontalClass: `${pfx}-horizontal`,
+                    verticalClass: `${pfx}-vertical`,
+                    paginationDisabledClass: `${pfx}-disabled`
+                }
+            });
+            swiper.pagination = {
+                el: null,
+                $el: null,
+                bullets: []
+            };
+            let bulletSize;
+            let dynamicBulletIndex = 0;
+            function isPaginationDisabled() {
+                return !swiper.params.pagination.el || !swiper.pagination.el || !swiper.pagination.$el || swiper.pagination.$el.length === 0;
+            }
+            function setSideBullets($bulletEl, position) {
+                const {bulletActiveClass} = swiper.params.pagination;
+                $bulletEl[position]().addClass(`${bulletActiveClass}-${position}`)[position]().addClass(`${bulletActiveClass}-${position}-${position}`);
+            }
+            function update() {
+                const rtl = swiper.rtl;
+                const params = swiper.params.pagination;
+                if (isPaginationDisabled()) return;
+                const slidesLength = swiper.virtual && swiper.params.virtual.enabled ? swiper.virtual.slides.length : swiper.slides.length;
+                const $el = swiper.pagination.$el;
+                let current;
+                const total = swiper.params.loop ? Math.ceil((slidesLength - swiper.loopedSlides * 2) / swiper.params.slidesPerGroup) : swiper.snapGrid.length;
+                if (swiper.params.loop) {
+                    current = Math.ceil((swiper.activeIndex - swiper.loopedSlides) / swiper.params.slidesPerGroup);
+                    if (current > slidesLength - 1 - swiper.loopedSlides * 2) current -= slidesLength - swiper.loopedSlides * 2;
+                    if (current > total - 1) current -= total;
+                    if (current < 0 && swiper.params.paginationType !== "bullets") current = total + current;
+                } else if (typeof swiper.snapIndex !== "undefined") current = swiper.snapIndex; else current = swiper.activeIndex || 0;
+                if (params.type === "bullets" && swiper.pagination.bullets && swiper.pagination.bullets.length > 0) {
+                    const bullets = swiper.pagination.bullets;
+                    let firstIndex;
+                    let lastIndex;
+                    let midIndex;
+                    if (params.dynamicBullets) {
+                        bulletSize = bullets.eq(0)[swiper.isHorizontal() ? "outerWidth" : "outerHeight"](true);
+                        $el.css(swiper.isHorizontal() ? "width" : "height", `${bulletSize * (params.dynamicMainBullets + 4)}px`);
+                        if (params.dynamicMainBullets > 1 && swiper.previousIndex !== void 0) {
+                            dynamicBulletIndex += current - (swiper.previousIndex - swiper.loopedSlides || 0);
+                            if (dynamicBulletIndex > params.dynamicMainBullets - 1) dynamicBulletIndex = params.dynamicMainBullets - 1; else if (dynamicBulletIndex < 0) dynamicBulletIndex = 0;
+                        }
+                        firstIndex = Math.max(current - dynamicBulletIndex, 0);
+                        lastIndex = firstIndex + (Math.min(bullets.length, params.dynamicMainBullets) - 1);
+                        midIndex = (lastIndex + firstIndex) / 2;
+                    }
+                    bullets.removeClass([ "", "-next", "-next-next", "-prev", "-prev-prev", "-main" ].map((suffix => `${params.bulletActiveClass}${suffix}`)).join(" "));
+                    if ($el.length > 1) bullets.each((bullet => {
+                        const $bullet = dom(bullet);
+                        const bulletIndex = $bullet.index();
+                        if (bulletIndex === current) $bullet.addClass(params.bulletActiveClass);
+                        if (params.dynamicBullets) {
+                            if (bulletIndex >= firstIndex && bulletIndex <= lastIndex) $bullet.addClass(`${params.bulletActiveClass}-main`);
+                            if (bulletIndex === firstIndex) setSideBullets($bullet, "prev");
+                            if (bulletIndex === lastIndex) setSideBullets($bullet, "next");
+                        }
+                    })); else {
+                        const $bullet = bullets.eq(current);
+                        const bulletIndex = $bullet.index();
+                        $bullet.addClass(params.bulletActiveClass);
+                        if (params.dynamicBullets) {
+                            const $firstDisplayedBullet = bullets.eq(firstIndex);
+                            const $lastDisplayedBullet = bullets.eq(lastIndex);
+                            for (let i = firstIndex; i <= lastIndex; i += 1) bullets.eq(i).addClass(`${params.bulletActiveClass}-main`);
+                            if (swiper.params.loop) if (bulletIndex >= bullets.length) {
+                                for (let i = params.dynamicMainBullets; i >= 0; i -= 1) bullets.eq(bullets.length - i).addClass(`${params.bulletActiveClass}-main`);
+                                bullets.eq(bullets.length - params.dynamicMainBullets - 1).addClass(`${params.bulletActiveClass}-prev`);
+                            } else {
+                                setSideBullets($firstDisplayedBullet, "prev");
+                                setSideBullets($lastDisplayedBullet, "next");
+                            } else {
+                                setSideBullets($firstDisplayedBullet, "prev");
+                                setSideBullets($lastDisplayedBullet, "next");
+                            }
+                        }
+                    }
+                    if (params.dynamicBullets) {
+                        const dynamicBulletsLength = Math.min(bullets.length, params.dynamicMainBullets + 4);
+                        const bulletsOffset = (bulletSize * dynamicBulletsLength - bulletSize) / 2 - midIndex * bulletSize;
+                        const offsetProp = rtl ? "right" : "left";
+                        bullets.css(swiper.isHorizontal() ? offsetProp : "top", `${bulletsOffset}px`);
+                    }
+                }
+                if (params.type === "fraction") {
+                    $el.find(classes_to_selector_classesToSelector(params.currentClass)).text(params.formatFractionCurrent(current + 1));
+                    $el.find(classes_to_selector_classesToSelector(params.totalClass)).text(params.formatFractionTotal(total));
+                }
+                if (params.type === "progressbar") {
+                    let progressbarDirection;
+                    if (params.progressbarOpposite) progressbarDirection = swiper.isHorizontal() ? "vertical" : "horizontal"; else progressbarDirection = swiper.isHorizontal() ? "horizontal" : "vertical";
+                    const scale = (current + 1) / total;
+                    let scaleX = 1;
+                    let scaleY = 1;
+                    if (progressbarDirection === "horizontal") scaleX = scale; else scaleY = scale;
+                    $el.find(classes_to_selector_classesToSelector(params.progressbarFillClass)).transform(`translate3d(0,0,0) scaleX(${scaleX}) scaleY(${scaleY})`).transition(swiper.params.speed);
+                }
+                if (params.type === "custom" && params.renderCustom) {
+                    $el.html(params.renderCustom(swiper, current + 1, total));
+                    emit("paginationRender", $el[0]);
+                } else emit("paginationUpdate", $el[0]);
+                if (swiper.params.watchOverflow && swiper.enabled) $el[swiper.isLocked ? "addClass" : "removeClass"](params.lockClass);
+            }
+            function render() {
+                const params = swiper.params.pagination;
+                if (isPaginationDisabled()) return;
+                const slidesLength = swiper.virtual && swiper.params.virtual.enabled ? swiper.virtual.slides.length : swiper.slides.length;
+                const $el = swiper.pagination.$el;
+                let paginationHTML = "";
+                if (params.type === "bullets") {
+                    let numberOfBullets = swiper.params.loop ? Math.ceil((slidesLength - swiper.loopedSlides * 2) / swiper.params.slidesPerGroup) : swiper.snapGrid.length;
+                    if (swiper.params.freeMode && swiper.params.freeMode.enabled && !swiper.params.loop && numberOfBullets > slidesLength) numberOfBullets = slidesLength;
+                    for (let i = 0; i < numberOfBullets; i += 1) if (params.renderBullet) paginationHTML += params.renderBullet.call(swiper, i, params.bulletClass); else paginationHTML += `<${params.bulletElement} class="${params.bulletClass}"></${params.bulletElement}>`;
+                    $el.html(paginationHTML);
+                    swiper.pagination.bullets = $el.find(classes_to_selector_classesToSelector(params.bulletClass));
+                }
+                if (params.type === "fraction") {
+                    if (params.renderFraction) paginationHTML = params.renderFraction.call(swiper, params.currentClass, params.totalClass); else paginationHTML = `<span class="${params.currentClass}"></span>` + " / " + `<span class="${params.totalClass}"></span>`;
+                    $el.html(paginationHTML);
+                }
+                if (params.type === "progressbar") {
+                    if (params.renderProgressbar) paginationHTML = params.renderProgressbar.call(swiper, params.progressbarFillClass); else paginationHTML = `<span class="${params.progressbarFillClass}"></span>`;
+                    $el.html(paginationHTML);
+                }
+                if (params.type !== "custom") emit("paginationRender", swiper.pagination.$el[0]);
+            }
+            function init() {
+                swiper.params.pagination = create_element_if_not_defined_createElementIfNotDefined(swiper, swiper.originalParams.pagination, swiper.params.pagination, {
+                    el: "swiper-pagination"
+                });
+                const params = swiper.params.pagination;
+                if (!params.el) return;
+                let $el = dom(params.el);
+                if ($el.length === 0) return;
+                if (swiper.params.uniqueNavElements && typeof params.el === "string" && $el.length > 1) {
+                    $el = swiper.$el.find(params.el);
+                    if ($el.length > 1) $el = $el.filter((el => {
+                        if (dom(el).parents(".swiper")[0] !== swiper.el) return false;
+                        return true;
+                    }));
+                }
+                if (params.type === "bullets" && params.clickable) $el.addClass(params.clickableClass);
+                $el.addClass(params.modifierClass + params.type);
+                $el.addClass(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
+                if (params.type === "bullets" && params.dynamicBullets) {
+                    $el.addClass(`${params.modifierClass}${params.type}-dynamic`);
+                    dynamicBulletIndex = 0;
+                    if (params.dynamicMainBullets < 1) params.dynamicMainBullets = 1;
+                }
+                if (params.type === "progressbar" && params.progressbarOpposite) $el.addClass(params.progressbarOppositeClass);
+                if (params.clickable) $el.on("click", classes_to_selector_classesToSelector(params.bulletClass), (function onClick(e) {
+                    e.preventDefault();
+                    let index = dom(this).index() * swiper.params.slidesPerGroup;
+                    if (swiper.params.loop) index += swiper.loopedSlides;
+                    swiper.slideTo(index);
+                }));
+                Object.assign(swiper.pagination, {
+                    $el,
+                    el: $el[0]
+                });
+                if (!swiper.enabled) $el.addClass(params.lockClass);
+            }
+            function destroy() {
+                const params = swiper.params.pagination;
+                if (isPaginationDisabled()) return;
+                const $el = swiper.pagination.$el;
+                $el.removeClass(params.hiddenClass);
+                $el.removeClass(params.modifierClass + params.type);
+                $el.removeClass(swiper.isHorizontal() ? params.horizontalClass : params.verticalClass);
+                if (swiper.pagination.bullets && swiper.pagination.bullets.removeClass) swiper.pagination.bullets.removeClass(params.bulletActiveClass);
+                if (params.clickable) $el.off("click", classes_to_selector_classesToSelector(params.bulletClass));
+            }
+            on("init", (() => {
+                if (swiper.params.pagination.enabled === false) disable(); else {
+                    init();
+                    render();
+                    update();
+                }
+            }));
+            on("activeIndexChange", (() => {
+                if (swiper.params.loop) update(); else if (typeof swiper.snapIndex === "undefined") update();
+            }));
+            on("snapIndexChange", (() => {
+                if (!swiper.params.loop) update();
+            }));
+            on("slidesLengthChange", (() => {
+                if (swiper.params.loop) {
+                    render();
+                    update();
+                }
+            }));
+            on("snapGridLengthChange", (() => {
+                if (!swiper.params.loop) {
+                    render();
+                    update();
+                }
+            }));
+            on("destroy", (() => {
+                destroy();
+            }));
+            on("enable disable", (() => {
+                const {$el} = swiper.pagination;
+                if ($el) $el[swiper.enabled ? "removeClass" : "addClass"](swiper.params.pagination.lockClass);
+            }));
+            on("lock unlock", (() => {
+                update();
+            }));
+            on("click", ((_s, e) => {
+                const targetEl = e.target;
+                const {$el} = swiper.pagination;
+                if (swiper.params.pagination.el && swiper.params.pagination.hideOnClick && $el && $el.length > 0 && !dom(targetEl).hasClass(swiper.params.pagination.bulletClass)) {
+                    if (swiper.navigation && (swiper.navigation.nextEl && targetEl === swiper.navigation.nextEl || swiper.navigation.prevEl && targetEl === swiper.navigation.prevEl)) return;
+                    const isHidden = $el.hasClass(swiper.params.pagination.hiddenClass);
+                    if (isHidden === true) emit("paginationShow"); else emit("paginationHide");
+                    $el.toggleClass(swiper.params.pagination.hiddenClass);
+                }
+            }));
+            const enable = () => {
+                swiper.$el.removeClass(swiper.params.pagination.paginationDisabledClass);
+                if (swiper.pagination.$el) swiper.pagination.$el.removeClass(swiper.params.pagination.paginationDisabledClass);
+                init();
+                render();
+                update();
+            };
+            const disable = () => {
+                swiper.$el.addClass(swiper.params.pagination.paginationDisabledClass);
+                if (swiper.pagination.$el) swiper.pagination.$el.addClass(swiper.params.pagination.paginationDisabledClass);
+                destroy();
+            };
+            Object.assign(swiper.pagination, {
+                enable,
+                disable,
+                render,
+                update,
+                init,
+                destroy
             });
         }
         function initSliders() {
-            const newsSliders = document.querySelectorAll(".news__slider");
-            if (newsSliders.length) {
-                const sliders = document.querySelectorAll(".news__slider");
+            if (document.querySelector(".news__slider")) {
+                const slider = document.querySelector(".news__slider");
                 let mySwiper;
-                sliders.forEach((slider => {
-                    function mobileSlider() {
-                        if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
-                            mySwiper = new core(".news__slider", {
-                                modules: [ Lazy ],
-                                observer: true,
-                                observeParents: true,
-                                slidesPerView: 2,
-                                observeSlideChildren: true,
-                                spaceBetween: 10,
-                                loop: true,
-                                speed: 800,
-                                lazy: {
-                                    loadPrevNext: true
+                function mobileSlider() {
+                    if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".news__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 2,
+                            observeSlideChildren: true,
+                            spaceBetween: 10,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.2,
+                                    spaceBetween: 30
                                 },
-                                breakpoints: {
-                                    320: {
-                                        slidesPerView: 1.2,
-                                        spaceBetween: 30
-                                    },
-                                    600: {
-                                        slidesPerView: 2,
-                                        spaceBetween: 20
-                                    }
-                                },
-                                on: {}
-                            });
-                            slider.dataset.mobile = "true";
-                        }
-                        if (window.innerWidth > 767) {
-                            slider.dataset.mobile = "false";
-                            if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
-                        }
+                                600: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
                     }
+                    if (window.innerWidth > 767) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
                     mobileSlider();
-                    window.addEventListener("resize", (() => {
-                        mobileSlider();
-                    }));
+                }));
+            }
+            if (document.querySelector(".news__slider_second")) {
+                const slider = document.querySelector(".news__slider_second");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".news__slider_second", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 2,
+                            observeSlideChildren: true,
+                            spaceBetween: 10,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.2,
+                                    spaceBetween: 30
+                                },
+                                600: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 767) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".statistics-rate__slider")) {
+                const slider = document.querySelector(".statistics-rate__slider");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".statistics-rate__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 2,
+                            observeSlideChildren: true,
+                            spaceBetween: 10,
+                            loop: true,
+                            speed: 800,
+                            navigation: {
+                                prevEl: ".swiper-button-prev",
+                                nextEl: ".swiper-button-next"
+                            },
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.4,
+                                    spaceBetween: 10
+                                },
+                                400: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 30
+                                },
+                                600: {
+                                    slidesPerView: 3,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 767) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".similar-articles__slider")) new core(".similar-articles__slider", {
+                modules: [ Pagination ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: 3,
+                spaceBetween: 25,
+                speed: 800,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1.2,
+                        spaceBetween: 20
+                    },
+                    686: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    992: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    1367: {
+                        slidesPerView: 3,
+                        spaceBetween: 30
+                    }
+                },
+                on: {}
+            });
+            if (document.querySelector(".create-blog__slider")) {
+                const slider = document.querySelector(".create-blog__slider");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 991 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".create-blog__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 3,
+                            observeSlideChildren: true,
+                            spaceBetween: 30,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.2,
+                                    spaceBetween: 10
+                                },
+                                400: {
+                                    slidesPerView: 1.3,
+                                    spaceBetween: 30
+                                },
+                                570: {
+                                    slidesPerView: 2.1,
+                                    spaceBetween: 20
+                                },
+                                767: {
+                                    slidesPerView: 2.2,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 991) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".creating-competition__slider")) new core(".creating-competition__slider", {
+                modules: [ Pagination ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: 2.4,
+                spaceBetween: 25,
+                speed: 800,
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 20
+                    },
+                    400: {
+                        slidesPerView: 2,
+                        spaceBetween: 20
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 20
+                    }
+                },
+                on: {}
+            });
+            if (document.querySelector(".result-of-competition__slider")) {
+                const slider = document.querySelector(".result-of-competition__slider");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".result-of-competition__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 3,
+                            observeSlideChildren: true,
+                            spaceBetween: 30,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.5,
+                                    spaceBetween: 10
+                                },
+                                400: {
+                                    slidesPerView: 2.5,
+                                    spaceBetween: 30
+                                },
+                                570: {
+                                    slidesPerView: 3.2,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 767) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".advertising-posts__slider")) {
+                const slider = document.querySelector(".advertising-posts__slider");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".advertising-posts__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 3,
+                            observeSlideChildren: true,
+                            spaceBetween: 30,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.2,
+                                    spaceBetween: 10
+                                },
+                                500: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 10
+                                },
+                                620: {
+                                    slidesPerView: 2.5,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 767) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".add-vacancy__slider")) {
+                const slider = document.querySelector(".add-vacancy__slider");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".add-vacancy__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 2,
+                            observeSlideChildren: true,
+                            spaceBetween: 30,
+                            loop: true,
+                            speed: 800,
+                            slidesPerColumn: 3,
+                            autoHeight: false,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.2,
+                                    spaceBetween: 10
+                                },
+                                500: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 10
+                                },
+                                620: {
+                                    slidesPerView: 2.5,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 767) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".company-employees__slider")) {
+                const slider = document.querySelector(".company-employees__slider");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".company-employees__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 2,
+                            observeSlideChildren: true,
+                            spaceBetween: 10,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.5,
+                                    spaceBetween: 20
+                                },
+                                375: {
+                                    slidesPerView: 2.1,
+                                    spaceBetween: 30
+                                },
+                                445: {
+                                    slidesPerView: 2.5,
+                                    spaceBetween: 20
+                                },
+                                600: {
+                                    slidesPerView: 3.2,
+                                    spaceBetween: 20
+                                },
+                                720: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 767) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".work-with__slider")) {
+                const slider = document.querySelector(".work-with__slider");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 991 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".work-with__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 2,
+                            observeSlideChildren: true,
+                            spaceBetween: 10,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.5,
+                                    spaceBetween: 30
+                                },
+                                479: {
+                                    slidesPerView: 2.2,
+                                    spaceBetween: 30
+                                },
+                                587: {
+                                    slidesPerView: 3.1,
+                                    spaceBetween: 30
+                                },
+                                767: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 991) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".office-photos__slider")) {
+                const slider = document.querySelector(".office-photos__slider");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".office-photos__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 2,
+                            observeSlideChildren: true,
+                            spaceBetween: 10,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.3,
+                                    spaceBetween: 30
+                                },
+                                479: {
+                                    slidesPerView: 2.2,
+                                    spaceBetween: 30
+                                },
+                                587: {
+                                    slidesPerView: 3.1,
+                                    spaceBetween: 30
+                                },
+                                767: {
+                                    slidesPerView: 2,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 767) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".blogs__slider_transform")) {
+                const slider = document.querySelector(".blogs__slider_transform");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 991 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".blogs__slider_transform", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 2,
+                            observeSlideChildren: true,
+                            spaceBetween: 10,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.2,
+                                    spaceBetween: 20
+                                },
+                                479: {
+                                    slidesPerView: 1.5,
+                                    spaceBetween: 20
+                                },
+                                550: {
+                                    slidesPerView: 2.2,
+                                    spaceBetween: 20
+                                },
+                                767: {
+                                    slidesPerView: 3.1,
+                                    spaceBetween: 20
+                                },
+                                991: {
+                                    slidesPerView: 4,
+                                    spaceBetween: 20
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 991) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
+                }));
+            }
+            if (document.querySelector(".blogs__slider_not-transform")) new core(".blogs__slider_not-transform", {
+                modules: [ Navigation ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: 2.4,
+                spaceBetween: 25,
+                speed: 800,
+                loop: true,
+                navigation: {
+                    nextEl: ".swiper-button-next_blogs"
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1.2,
+                        spaceBetween: 20
+                    },
+                    479: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 20
+                    },
+                    550: {
+                        slidesPerView: 2.2,
+                        spaceBetween: 20
+                    },
+                    767: {
+                        slidesPerView: 3.1,
+                        spaceBetween: 20
+                    },
+                    991: {
+                        slidesPerView: 4.4,
+                        spaceBetween: 20
+                    }
+                },
+                on: {}
+            });
+            if (document.querySelector(".current-salaries__slider")) new core(".current-salaries__slider", {
+                modules: [ Navigation ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: 2.4,
+                spaceBetween: 25,
+                speed: 800,
+                loop: true,
+                navigation: {
+                    nextEl: ".swiper-button-next_current-salaries"
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1.2,
+                        spaceBetween: 20
+                    },
+                    479: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 20
+                    },
+                    550: {
+                        slidesPerView: 2.2,
+                        spaceBetween: 20
+                    },
+                    767: {
+                        slidesPerView: 3.1,
+                        spaceBetween: 20
+                    },
+                    991: {
+                        slidesPerView: 4.4,
+                        spaceBetween: 20
+                    }
+                },
+                on: {}
+            });
+            if (document.querySelector(".tariffs__slider")) {
+                const slider = document.querySelector(".tariffs__slider");
+                let mySwiper;
+                function mobileSlider() {
+                    if (window.innerWidth <= 767 && slider.dataset.mobile === "false") {
+                        mySwiper = new core(".tariffs__slider", {
+                            modules: [ Navigation ],
+                            observer: true,
+                            observeParents: true,
+                            slidesPerView: 2,
+                            observeSlideChildren: true,
+                            spaceBetween: 10,
+                            loop: true,
+                            speed: 800,
+                            breakpoints: {
+                                320: {
+                                    slidesPerView: 1.3,
+                                    spaceBetween: 20
+                                },
+                                479: {
+                                    slidesPerView: 1.3,
+                                    spaceBetween: 30
+                                },
+                                680: {
+                                    slidesPerView: 2.1,
+                                    spaceBetween: 30
+                                }
+                            },
+                            on: {}
+                        });
+                        slider.dataset.mobile = "true";
+                    }
+                    if (window.innerWidth > 767) {
+                        slider.dataset.mobile = "false";
+                        if (slider.classList.contains("swiper-initialized")) mySwiper.destroy();
+                    }
+                }
+                mobileSlider();
+                window.addEventListener("resize", (() => {
+                    mobileSlider();
                 }));
             }
         }
@@ -4173,6 +5027,12 @@
         }
         const da = new DynamicAdapt("max");
         da.init();
+        const showContactsBtns = document.querySelectorAll(".item-info__show-contact");
+        if (showContactsBtns) showContactsBtns.forEach((showContactsBtn => {
+            showContactsBtn.addEventListener("click", (() => {
+                showContactsBtn.parentNode.classList.add("show-contact-active");
+            }));
+        }));
         window["FLS"] = false;
         isWebp();
         menuInit();
