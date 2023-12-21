@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Просмотр резюме</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231221195044">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header header_not-authorized">
+			<div class="header__container">
+				<a target="_blank" href="index.html" class="header__logo">
+					<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
+				</a>
+				<div class="header__menu menu">
+					<button type="button" class="menu__icon icon-menu">
+						<picture><source srcset="img/icons/burger-menu.webp" type="image/webp"><img src="img/icons/burger-menu.png" alt="icon:burger-menu"></picture>
+					</button>
+					<nav class="menu__body">
+						<div hidden class="menu__header">
+							<button aria-label="close-menu" class="menu__close _icon-close"></button>
+							<button data-da=".menu__header,845,2" type="button" class="sign-in _icon-sign-in">Вход</button>
+							<button aria-label="search" class="menu__search _icon-search"></button>
+						</div>
+						<ul class="menu__list">
+							<li class="menu__item"><a href="#" class="menu__link">Вакансии</a></li>
+							<li class="menu__item"><a href="#" class="menu__link menu__link_active">Резюме</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Новости</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Тарифы</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="header__actions">
+					<button type="button" class="sign-in sign-in_desktop _icon-sign-in">Вход</button>
+				</div>
+			</div>
+		</header>
+
+		<!-- When user authorizes  -->
+
+		<header hidden class="header header_authorized">
+			<div class="header__container">
+				<a target="_blank" href="index.html" class="header__logo">
+					<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
+				</a>
+				<div class="header__menu menu">
+					<button type="button" class="menu__icon icon-menu">
+						<picture><source srcset="img/icons/burger-menu.webp" type="image/webp"><img src="img/icons/burger-menu.png" alt="icon:burger-menu"></picture>
+					</button>
+					<nav class="menu__body">
+						<div hidden class="menu__header">
+							<button class="menu__close _icon-close"></button>
+							<button type="button" class="sign-out _icon-sign-in">Выйти</button>
+							<button class="menu__search _icon-search"></button>
+						</div>
+						<ul class="menu__list">
+							<li class="menu__item"><a href="#" class="menu__link">Вакансии</a></li>
+							<li class="menu__item"><a href="#" class="menu__link menu__link_active">Резюме</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Новости</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Тарифы</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="header__actions">
+					<div class="header__user user">
+						<a href="#" class="user__avatar">
+							<picture><source srcset="img/testing/1300x200.webp" type="image/webp"><img src="img/testing/1300x200.jpg" alt="image:avatar"></picture>
+						</a>
+						<span class="user__name">Tom</span>
+					</div>
+					<button type="button" class="sign-out sign-out_desktop _icon-sign-in">Выйти</button>
+				</div>
+			</div>
+		</header>
+		<main class="page page_view-resume">
+			<div class="cta">
+				<div class="cta__container">
+					<ul class="breadcrumbs">
+						<li class="breadcrumbs__item breadcrumbs__item_active">
+							<a target="_blank" href="index.html" class="breadcrumbs__link">Главная</a>
+						</li>
+						<li class="breadcrumbs__item breadcrumbs__item_active">
+							<a target="_blank" href="index.html" class="breadcrumbs__link">Вакансии</a>
+						</li>
+						<li class="breadcrumbs__item">
+							Красный Хамелеон
+						</li>
+					</ul>
+					<a href="#" class="cta__button _icon-right-arrow">Вернутся назад</a>
+				</div>
+			</div>
+			<section class="view-section">
+				<div class="view-section__container">
+					<div class="view-section__header">
+						<div class="view-section__image">
+							<picture><source data-srcset="img/view-pages/avatar.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/view-pages/avatar.jpg" alt="image"></picture>
+						</div>
+						<div class="view-section__content content-view">
+							<h1 class="content-view__title title">Семеренко Андрей</h1>
+							<div class="content-view__wrapper">
+								<div class="content-view__date">08 янв 2022</div>
+								<div class="content-view__views _icon-eye">450</div>
+							</div>
+							<div class="content-view__info">
+								<div class="content-view__item _icon-cash">
+									<div class="content-view__inner">
+										<div class="content-view__label">Желаемая зарплата Желаемая зарплатаЖелаемая зарплатаЖелаемая зарплатаЖелаемая зарплатаЖелаемая зарплата</div>
+										<span class="content-view__value">от 154 000 до 192 000 грн</span>
+									</div>
+								</div>
+								<div class="content-view__item _icon-portfolio">
+									<div class="content-view__inner">
+										<div class="content-view__label">Опыт работы </div>
+										<span class="content-view__value">3 года</span>
+									</div>
+								</div>
+								<div class="content-view__item _icon-pencil">
+									<div class="content-view__inner">
+										<div class="content-view__label">Тип занятости</div>
+										<span class="content-view__value">Полная</span>
+									</div>
+								</div>
+								<div class="content-view__item _icon-pin">
+									<div class="content-view__inner">
+										<div class="content-view__label">Место проживания</div>
+										<a href="#" class="content-view__value content-view__value_active">Киев</a>
+									</div>
+								</div>
+							</div>
+							<div class="content-view__bio">
+								<p>
+									Знания Photoshop, опыт работы в Canva. Работа с различными маркетинговыми сервисами, начиная
+									от mailchimp и
+									заканчивая google optimize и rick.ai. Любознательность, желание углубиться в специализацию
+									Digital Marketing-a.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="view-section__items">
+						<div class="view-section__item">
+							<div class="view-section__label">
+								Личные данные
+							</div>
+							<ul class="view-section__list">
+								<li>
+									<span class="view-section__info-type">Ф.И.О.:</span>
+									<span class="view-section__info-value">Семеренко Андрей</span>
+								</li>
+								<li>
+									<span class="view-section__info-type">Дата рождения:</span>
+									<span class="view-section__info-value">14 марта 1990</span>
+								</li>
+								<li>
+									<span class="view-section__info-type">Город проживания:</span>
+									<span class="view-section__info-value">Киев</span>
+								</li>
+								<li>
+									<span class="view-section__info-type">Адрес:</span>
+									<a href="mailto:evgenija@redchameleon.com.ua" class="view-section__info-link">evgenija@redchameleon.com.ua</a>
+								</li>
+								<li>
+									<span class="view-section__info-type">Телефон:</span>
+									<span class="view-section__info-value">063 325 66 52</span>
+								</li>
+								<li>
+									<span class="view-section__info-type">Эл. почта:</span>
+									<span class="view-section__info-value"></span>
+								</li>
+								<li>
+									<span class="view-section__info-type">Социальные сети:</span>
+									<span class="view-section__info-value"></span>
+								</li>
+							</ul>
+						</div>
+						<div class="view-section__item">
+							<div class="view-section__label">
+								Общая информация
+							</div>
+							<ul class="view-section__list">
+								<li>
+									<span class="view-section__info-type">Должность:</span>
+									<span class="view-section__info-value">UI/UX-, web-dДолжность: esigner</span>
+								</li>
+								<li>
+									<span class="view-section__info-type">Вид занятости:</span>
+									<span class="view-section__info-value">полный</span>
+								</li>
+								<li>
+									<span class="view-section__info-type">Зарплата:</span>
+									<span class="view-section__info-value">не указана</span>
+								</li>
+								<li>
+									<span class="view-section__info-type">Желаемый город работы:</span>
+									<span class="view-section__info-value">Киев</span>
+								</li>
+								<li>
+									<span class="view-section__info-type">Категории:</span>
+									<span class="view-section__info-value">IT, компьютеры, интернет; Дизайн, творчество</span>
+								</li>
+							</ul>
+						</div>
+						<div class="view-section__item view-section__item_column">
+							<div class="view-section__label">
+								Опыт работы
+							</div>
+							<ul class="view-section__list">
+								<li>
+									<span class="view-section__inner">
+										<span class="view-section__info-type">web designer, ui/ux, digital design</span>
+										<span class="view-section__info-value">с 09.2008 по наст. время (13 лет 5 месяцев)
+											Freelance</span>
+									</span>
+								</li>
+							</ul>
+						</div>
+						<div class="view-section__item">
+							<div class="view-section__label">
+								Образование
+							</div>
+							<ul class="view-section__list">
+								<li>
+									<span class="view-section__inner">
+										<span class="view-section__info-type">КНУТД, ФРИИТ</span>
+										<span class="view-section__info-value">с 2007 по 2012</span>
+									</span>
+								</li>
+							</ul>
+						</div>
+						<div class="view-section__item">
+							<div class="view-section__label">
+								Дополнительное образование
+							</div>
+							<ul class="view-section__list">
+								<li>
+									<span class="view-section__inner">
+										<span class="view-section__info-type">КНУТД, ФРИИТ</span>
+										<span class="view-section__info-value">с 2007 по 2012</span>
+									</span>
+								</li>
+							</ul>
+						</div>
+						<div class="view-section__wrapper">
+							<div class="view-section__item">
+								<div class="view-section__label">
+									Профессиональные и другие навыки
+								</div>
+								<ul class="view-section__list">
+									<li>
+										<span class="view-section__info-value">PHP 8; Redis, ElasticSearch/Sphinx;
+											Vue.js/Angular/React.</span>
+									</li>
+								</ul>
+							</div>
+							<div class="view-section__item">
+								<div class="view-section__label">
+									Знание языков
+								</div>
+								<ul class="view-section__list">
+									<li>
+										<span class="view-section__info-value">Русский-эксперт</span>
+									</li>
+									<li>
+										<span class="view-section__info-value">Украинский-эксперт</span>
+									</li>
+									<li>
+										<span class="view-section__info-value">Английский-средний</span>
+									</li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="similar-resume">
+				<div class="similar-resume__container">
+					<h2 class="similar-resume__subtitle subtitle">Похожие резюме</h2>
+					<div class="similar-resume__items">
+						<div class="similar-resume__item">
+							<div class="similar-resume__avatar">
+								<picture><source data-srcset="img/view-pages/mini-avatar.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  class="similar-resume__desktop-avatar" data-src="img/view-pages/mini-avatar.png" alt="avatar"></picture>
+								<picture><source data-srcset="img/view-pages/mobile-avatar.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  class="similar-resume__mobile-avatar" data-src="img/view-pages/mobile-avatar.png" alt="avatar"></picture>
+							</div>
+							<ul class="similar-resume__list">
+								<li class="similar-resume__main">
+									<b>Junior Front End Developer</b>
+								</li>
+								<li>
+									Львов, удаленно
+								</li>
+								<li class="similar-resume__price">
+									$800
+								</li>
+								<li>
+									1,5 лет опыта
+								</li>
+								<li>
+									Intermediate
+								</li>
+							</ul>
+						</div>
+						<div class="similar-resume__item">
+							<div class="similar-resume__avatar">
+								<picture><source data-srcset="img/view-pages/mini-avatar.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  class="similar-resume__desktop-avatar" data-src="img/view-pages/mini-avatar.png" alt="avatar"></picture>
+								<picture><source data-srcset="img/view-pages/mobile-avatar.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  class="similar-resume__mobile-avatar" data-src="img/view-pages/mobile-avatar.png" alt="avatar"></picture>
+							</div>
+							<ul class="similar-resume__list">
+								<li class="similar-resume__main">
+									<b>Junior Front End Developer</b>
+								</li>
+								<li>
+									Львов, удаленно
+								</li>
+								<li class="similar-resume__price">
+									$800
+								</li>
+								<li>
+									1,5 лет опыта
+								</li>
+								<li>
+									Intermediate
+								</li>
+							</ul>
+						</div>
+						<div class="similar-resume__item">
+							<div class="similar-resume__avatar">
+								<picture><source data-srcset="img/view-pages/mini-avatar.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  class="similar-resume__desktop-avatar" data-src="img/view-pages/mini-avatar.png" alt="avatar"></picture>
+								<picture><source data-srcset="img/view-pages/mobile-avatar.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  class="similar-resume__mobile-avatar" data-src="img/view-pages/mobile-avatar.png" alt="avatar"></picture>
+							</div>
+							<ul class="similar-resume__list">
+								<li class="similar-resume__main">
+									<b>Junior Front End Developer</b>
+								</li>
+								<li>
+									Львов, удаленно
+								</li>
+								<li class="similar-resume__price">
+									$800
+								</li>
+								<li>
+									1,5 лет опыта
+								</li>
+								<li>
+									Intermediate
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+				<div class="footer__item">
+					<a target="_blank" href="index.html" class="footer__logo">
+						<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
+					</a>
+					<p class="footer__policy">© 2022 Все права защищены </p>
+				</div>
+				<nav class="footer__menu">
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link">
+								iOS
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Android
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								C++
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Java
+							</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link">
+								.NET
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Project Manager
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								JavaScript
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								PHP
+							</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link footer__link_active">
+								Найти работу
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Разместить резюме
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Рассылка вакансий
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Архив вакансий
+							</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link">
+								Добавить вакансию
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Поиск резюме
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Рассылка резюме
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Советы работодателю
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<ul data-da=".footer__item,1300,first" class="footer__actions">
+					<li>
+						<a class="_icon-phone-01" href="tel:+380632259999">+380 (63) 225 99 99</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+	</div>
+	<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+				Text
+			</div>
+		</div>
+	</div>
+</div> -->
+	<script src="js/app.min.js?_v=20231221195044"></script>
+</body>
+
+</html>

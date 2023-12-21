@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Страница компании</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231221195044">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+
+<body>
+	<div class="wrapper">
+		<header class="header header_not-authorized">
+			<div class="header__container">
+				<a target="_blank" href="index.html" class="header__logo">
+					<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
+				</a>
+				<div class="header__menu menu">
+					<button type="button" class="menu__icon icon-menu">
+						<picture><source srcset="img/icons/burger-menu.webp" type="image/webp"><img src="img/icons/burger-menu.png" alt="icon:burger-menu"></picture>
+					</button>
+					<nav class="menu__body">
+						<div hidden class="menu__header">
+							<button aria-label="close-menu" class="menu__close _icon-close"></button>
+							<button data-da=".menu__header,845,2" type="button" class="sign-in _icon-sign-in">Вход</button>
+							<button aria-label="search" class="menu__search _icon-search"></button>
+						</div>
+						<ul class="menu__list">
+							<li class="menu__item"><a href="#" class="menu__link">Вакансии</a></li>
+							<li class="menu__item"><a href="#" class="menu__link menu__link_active">Резюме</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Новости</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Тарифы</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="header__actions">
+					<button type="button" class="sign-in sign-in_desktop _icon-sign-in">Вход</button>
+				</div>
+			</div>
+		</header>
+
+		<!-- When user authorizes  -->
+
+		<header hidden class="header header_authorized">
+			<div class="header__container">
+				<a target="_blank" href="index.html" class="header__logo">
+					<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
+				</a>
+				<div class="header__menu menu">
+					<button type="button" class="menu__icon icon-menu">
+						<picture><source srcset="img/icons/burger-menu.webp" type="image/webp"><img src="img/icons/burger-menu.png" alt="icon:burger-menu"></picture>
+					</button>
+					<nav class="menu__body">
+						<div hidden class="menu__header">
+							<button class="menu__close _icon-close"></button>
+							<button type="button" class="sign-out _icon-sign-in">Выйти</button>
+							<button class="menu__search _icon-search"></button>
+						</div>
+						<ul class="menu__list">
+							<li class="menu__item"><a href="#" class="menu__link">Вакансии</a></li>
+							<li class="menu__item"><a href="#" class="menu__link menu__link_active">Резюме</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Новости</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Тарифы</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="header__actions">
+					<div class="header__user user">
+						<a href="#" class="user__avatar">
+							<picture><source srcset="img/testing/1300x200.webp" type="image/webp"><img src="img/testing/1300x200.jpg" alt="image:avatar"></picture>
+						</a>
+						<span class="user__name">Tom</span>
+					</div>
+					<button type="button" class="sign-out sign-out_desktop _icon-sign-in">Выйти</button>
+				</div>
+			</div>
+		</header>
+		<main class="page page_company">
+			<div class="cta">
+				<div class="cta__container">
+					<ul class="breadcrumbs">
+						<li class="breadcrumbs__item breadcrumbs__item_active">
+							<a target="_blank" href="index.html" class="breadcrumbs__link">Главная</a>
+						</li>
+						<li class="breadcrumbs__item breadcrumbs__item_active">
+							<a target="_blank" href="#" class="breadcrumbs__link">Вакансии</a>
+						</li>
+						<li class="breadcrumbs__item">
+							Красный Хамелеон
+						</li>
+					</ul>
+					<a href="#" class="cta__button _icon-right-arrow">Вернутся назад</a>
+				</div>
+			</div>
+			<section class="company-info">
+				<div class="company-info__container">
+					<div class="company-info__top">
+						<div class="company-info__logo">
+							<picture><source srcset="img/company/logo.webp" type="image/webp"><img src="img/company/logo.png" alt="Logo: nix"></picture>
+						</div>
+					</div>
+					<div class="company-info__items">
+						<div class="company-info__item _icon-document-02">
+							<div class="company-info__name">Вакансии</div>
+							<span class="company-info__value">46 / 112</span>
+						</div>
+						<div class="company-info__item _icon-user-03">
+							<div class="company-info__name">Сотрудники</div>
+							<span class="company-info__value">133 / 190</span>
+						</div>
+						<div class="company-info__item _icon-like-04">
+							<div class="company-info__name">Подписчики</div>
+							<span class="company-info__value">79 / 84</span>
+						</div>
+					</div>
+					<div class="company-info__body">
+						<div class="company-info__details">
+							<h1 class="company-info__title title">NIX</h1>
+							<div class="company-info__rating">
+								<picture><source srcset="img/company/star.webp" type="image/webp"><img src="img/company/star.png" alt="icon:star"></picture>
+								<span class="company-info__value">4.21</span>
+							</div>
+						</div>
+						<p class="company-info__description">ИТ подразделение крупнейшей сети по продаже спортивных товаров.
+							Fox-IT.ru</p>
+						<p class="company-info__text">Наша талантливая команда профессионалов работает в рамках эффективной
+							системы внутреннего управления качеством и
+							коммуникаций
+							соответствующей уровню CMMI 3. Наши результаты соответствуют самым высоким международным
+							стандартам.</p>
+						<div class="info-block info-block_page-company">
+							<div class="info-block__inner">
+								<ul class="info-block__list">
+									<li>
+										<a href="tel:+380577840600" class="info-block__link _icon-phone-receiver-silhouette-01">+38 057
+											784-06-00</a>
+									</li>
+									<li>
+										<a href="mailto:ask@nixsolutions.com" class="info-block__link _icon-mail">ask@nixsolutions.com</a>
+									</li>
+									<li>
+										<a href="#" class="info-block__link _icon-pin">Киев, ул. Йорданская 32</a>
+									</li>
+								</ul>
+								<ul class="info-block__social social">
+									<li>
+										<a aria-label="telegram" class="social__telegram" href="#">
+											<span style="--icon-telegram: url(img/icons/telegram.svg)"></span>
+										</a>
+									</li>
+									<li>
+										<a aria-label="facebook" class="social__facebook" href="#">
+											<span style="--icon-facebook: url(img/icons/facebook.svg)"></span>
+										</a>
+									</li>
+									<li>
+										<a aria-label="instagram" class="social__instagram" href="#">
+											<span style="--icon-instagram: url(img/icons/instagram.svg)"></span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="company-how-we-work">
+				<div class="company-how-we-work__container">
+					<h2 class="company-how-we-work__subtitle subtitle">КАК МЫ РАБОТАЕМ</h2>
+					<h3 class="company-how-we-work__label">Есть идея или проект? Поделитесь этим с нами!</h3>
+					<p class="company-how-we-work__text"><span>ЗАПРОС ПРЕДЛОЖЕНИЯ.</span>Наши опытные бизнес-аналитики изучат
+						RFP и оперативно отправят вам документ "first review" в течение одного рабочего дня.</p>
+					<p class="company-how-we-work__text"><span>ПОЛУЧИТЕ ЦИТАТУ.</span> Вы также получите предложение о
+						стоимости проекта. Мы верим в то, что это правильно с первого раза,
+						поэтому мы стремимся
+						понять проект и бизнес-идею, лежащую в его основе, с самого начала. Это означает, что мы организуем с
+						вами встречу или
+						две, чтобы ответить на
+						несколько вопросов наших экспертов.</p>
+					<p class="company-how-we-work__text"><span>НАЧНИТЕ ПРОЕКТ.</span> Как только все детали будут уточнены и
+						одобрены вами, мы начнем работать над воплощением ваших идей в
+						жизнь.</p>
+				</div>
+			</section>
+			<section class="company-employees">
+				<div class="company-employees__container">
+					<div class="company-employees__header">
+						<h2 class="company-employees__subtitle subtitle">Сотрудники компании</h2>
+						<div data-da=".company-employees__container,767.98,last" class="company-employees__cta">
+							<a href="#" class="company-employees__button-readmore button-readmore _icon-right-arrow">+281
+								работают здесь</a>
+						</div>
+					</div>
+					<div class="company-employees__slider swiper">
+						<div class="company-employees__wrapper swiper-wrapper">
+							<div class="company-employees__slide swiper-slide">
+								<div class="company-employees__image">
+									<picture><source srcset="img/company/stuff/01.webp" type="image/webp"><img src="img/company/stuff/01.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="company-employees__slide swiper-slide">
+								<div class="company-employees__image">
+									<picture><source srcset="img/company/stuff/02.webp" type="image/webp"><img src="img/company/stuff/02.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="company-employees__slide swiper-slide">
+								<div class="company-employees__image">
+									<picture><source srcset="img/company/stuff/03.webp" type="image/webp"><img src="img/company/stuff/03.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="company-employees__slide swiper-slide">
+								<div class="company-employees__image">
+									<picture><source srcset="img/company/stuff/01.webp" type="image/webp"><img src="img/company/stuff/01.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="company-employees__slide swiper-slide">
+								<div class="company-employees__image">
+									<picture><source srcset="img/company/stuff/02.webp" type="image/webp"><img src="img/company/stuff/02.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="company-employees__slide swiper-slide">
+								<div class="company-employees__image">
+									<picture><source srcset="img/company/stuff/03.webp" type="image/webp"><img src="img/company/stuff/03.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="company-employees__slide swiper-slide">
+								<div class="company-employees__image">
+									<picture><source srcset="img/company/stuff/01.webp" type="image/webp"><img src="img/company/stuff/01.jpg" alt="image"></picture>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="company-receive">
+				<span class="company-receive__decor"></span>
+				<div class="company-receive__container">
+					<h2 class="company-receive__subtitle subtitle subtitle_white">У нас ты получишь:</h2>
+					<div class="company-receive__inner">
+						<ul class="company-receive__list">
+							<li class="company-receive__item">возможность комфортно совмещать работу и учебу</li>
+							<li class="company-receive__item">опеку ментора на время обучения и первые месяцы работы</li>
+							<li class="company-receive__item">крутые проекты для специалистов разного уровня подготоки</li>
+							<li class="company-receive__item">шанс поработать с компаниями из списка Фортуна</li>
+							<li class="company-receive__item">гибкая система пересмотра вознаграждения</li>
+						</ul>
+						<ul class="company-receive__list">
+							<li class="company-receive__item">возможность комфортно совмещать работу и учебу</li>
+							<li class="company-receive__item">опеку ментора на время обучения и первые месяцы работы</li>
+							<li class="company-receive__item">крутые проекты для специалистов разного уровня подготоки</li>
+							<li class="company-receive__item">шанс поработать с компаниями из списка Фортуна</li>
+							<li class="company-receive__item">гибкая система пересмотра вознаграждения</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section class="company-work-with-us">
+				<div class="company-work-with-us__container">
+					<h2 class="company-work-with-us__subtitle subtitle">Что бы с нами работать</h2>
+					<div class="company-work-with-us__top">
+						<div class="company-work-with-us__item">
+							<span class="company-work-with-us__step">1</span>
+							<h3 class="company-work-with-us__label">Выберите подходящую вакансию</h3>
+						</div>
+						<div hidden class="company-work-with-us__item company-work-with-us__item_2">
+							<span class="company-work-with-us__step">2</span>
+							<h3 class="company-work-with-us__label">Отправь свое резюме</h3>
+						</div>
+						<div class="company-work-with-us__item">
+							<span class="company-work-with-us__step">3</span>
+							<h3 class="company-work-with-us__label">Пройди тестирование</h3>
+						</div>
+						<div hidden class="company-work-with-us__item company-work-with-us__item_4">
+							<span class="company-work-with-us__step">4</span>
+							<h3 class="company-work-with-us__label">Получи приглашение на собеседование</h3>
+						</div>
+						<div class="company-work-with-us__item">
+							<span class="company-work-with-us__step">5</span>
+							<h3 class="company-work-with-us__label">Покажи свои знания и навыки нашим экспертам</h3>
+						</div>
+						<div hidden class="company-work-with-us__item company-work-with-us__item_6">
+							<span class="company-work-with-us__step">6</span>
+							<h3 class="company-work-with-us__label">Поздравляем! Ты часть команды!</h3>
+						</div>
+					</div>
+					<div class="company-work-with-us__bottom">
+						<div class="company-work-with-us__item">
+							<span class="company-work-with-us__step">2</span>
+							<h3 class="company-work-with-us__label">Отправь свое резюме</h3>
+						</div>
+						<div class="company-work-with-us__item">
+							<span class="company-work-with-us__step">4</span>
+							<h3 class="company-work-with-us__label">Получи приглашение на собеседование</h3>
+						</div>
+						<div class="company-work-with-us__item">
+							<span class="company-work-with-us__step">6</span>
+							<h3 class="company-work-with-us__label">Поздравляем! Ты часть команды!</h3>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="skills-in-demand">
+				<div class="skills-in-demand__container">
+					<h2 class="skills-in-demand__subtitle subtitle">Востребованные в компании навыки</h2>
+					<ul class="skills-in-demand__items">
+						<li>
+							SQL
+						</li>
+						<li>
+							REST
+						</li>
+						<li>
+							Java
+						</li>
+						<li>
+							SOAP
+						</li>
+						<li>
+							Java Spring Framework
+						</li>
+						<li>
+							BPMN
+						</li>
+						<li>
+							XML
+						</li>
+						<li>
+							Python
+						</li>
+						<li>
+							UML
+						</li>
+						<li>
+							Тестирование API
+						</li>
+						<li>
+							API Интерфейсы
+						</li>
+						<li>
+							Тестирование ПО
+						</li>
+						<li>
+							Git
+						</li>
+						<li>
+							Linux
+						</li>
+						<li>
+							Ручное тестирование
+						</li>
+						<li>
+							Docker
+						</li>
+						<li>
+							JavaScript
+						</li>
+						<li>
+							Postman
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="similar-vacancies">
+				<div class="similar-vacancies__container">
+					<h2 class="similar-vacancies__subtitle subtitle">
+						Вакансии компании
+					</h2>
+					<div class="similar-vacancies__items">
+						<div class="similar-vacancies__item">
+							<div class="similar-vacancies__content">
+								<div class="similar-vacancies__image">
+									<picture><source srcset="img/view-pages/similar-01.webp" type="image/webp"><img src="img/view-pages/similar-01.png" alt="image"></picture>
+								</div>
+								<div class="similar-vacancies__inner">
+									<a href="#" class="similar-vacancies__link">Senior Java Developer; Sign-on</a>
+									<div class="similar-vacancies__company">DataArt, Киев</div>
+								</div>
+							</div>
+							<div class="similar-vacancies__info">
+								<div class="similar-vacancies__ammount-range">от 40 000 до 60 000 грн</div>
+								<div class="similar-vacancies__experience-range">1-3 года</div>
+							</div>
+						</div>
+						<div class="similar-vacancies__item">
+							<div class="similar-vacancies__content">
+								<div class="similar-vacancies__image">
+									<picture><source srcset="img/view-pages/similar-01.webp" type="image/webp"><img src="img/view-pages/similar-01.png" alt="image"></picture>
+								</div>
+								<div class="similar-vacancies__inner">
+									<a href="#" class="similar-vacancies__link">Senior Java Developer; Sign-on</a>
+									<div class="similar-vacancies__company">DataArt, Киев</div>
+								</div>
+							</div>
+							<div class="similar-vacancies__info">
+								<div class="similar-vacancies__ammount-range">от 40 000 до 60 000 грн</div>
+								<div class="similar-vacancies__experience-range">1-3 года</div>
+							</div>
+						</div>
+						<div class="similar-vacancies__item">
+							<div class="similar-vacancies__content">
+								<div class="similar-vacancies__image">
+									<picture><source srcset="img/view-pages/similar-01.webp" type="image/webp"><img src="img/view-pages/similar-01.png" alt="image"></picture>
+								</div>
+								<div class="similar-vacancies__inner">
+									<a href="#" class="similar-vacancies__link">Senior Java Developer; Sign-on</a>
+									<div class="similar-vacancies__company">DataArt, Киев</div>
+								</div>
+							</div>
+							<div class="similar-vacancies__info">
+								<div class="similar-vacancies__ammount-range">от 40 000 до 60 000 грн</div>
+								<div class="similar-vacancies__experience-range">1-3 года</div>
+							</div>
+						</div>
+						<div class="similar-vacancies__item">
+							<div class="similar-vacancies__content">
+								<div class="similar-vacancies__image">
+									<picture><source srcset="img/view-pages/similar-01.webp" type="image/webp"><img src="img/view-pages/similar-01.png" alt="image"></picture>
+								</div>
+								<div class="similar-vacancies__inner">
+									<a href="#" class="similar-vacancies__link">Senior Java Developer; Sign-on</a>
+									<div class="similar-vacancies__company">DataArt, Киев</div>
+								</div>
+							</div>
+							<div class="similar-vacancies__info">
+								<div class="similar-vacancies__ammount-range">от 40 000 до 60 000 грн</div>
+								<div class="similar-vacancies__experience-range">1-3 года</div>
+							</div>
+						</div>
+						<div class="similar-vacancies__item">
+							<div class="similar-vacancies__content">
+								<div class="similar-vacancies__image">
+									<picture><source srcset="img/view-pages/similar-01.webp" type="image/webp"><img src="img/view-pages/similar-01.png" alt="image"></picture>
+								</div>
+								<div class="similar-vacancies__inner">
+									<a href="#" class="similar-vacancies__link">Senior Java Developer; Sign-on</a>
+									<div class="similar-vacancies__company">DataArt, Киев</div>
+								</div>
+							</div>
+							<div class="similar-vacancies__info">
+								<div class="similar-vacancies__ammount-range">от 40 000 до 60 000 грн</div>
+								<div class="similar-vacancies__experience-range">1-3 года</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="work-with">
+				<div class="work-with__container">
+					<h2 class="work-with__subtitle subtitle">С кем мы работаем</h2>
+					<div class="work-with__slider swiper">
+						<div class="work-with__wrapper swiper-wrapper">
+							<div class="work-with__slide swiper-slide">
+								<div class="work-with__image">
+									<picture><source srcset="img/company/work-with/01.webp" type="image/webp"><img src="img/company/work-with/01.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="work-with__slide swiper-slide">
+								<div class="work-with__image">
+									<picture><source srcset="img/company/work-with/02.webp" type="image/webp"><img src="img/company/work-with/02.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="work-with__slide swiper-slide">
+								<div class="work-with__image">
+									<picture><source srcset="img/company/work-with/03.webp" type="image/webp"><img src="img/company/work-with/03.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="work-with__slide swiper-slide">
+								<div class="work-with__image">
+									<picture><source srcset="img/company/work-with/04.webp" type="image/webp"><img src="img/company/work-with/04.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="work-with__slide swiper-slide">
+								<div class="work-with__image">
+									<picture><source srcset="img/company/work-with/05.webp" type="image/webp"><img src="img/company/work-with/05.png" alt="image"></picture>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="office-photos">
+				<div class="office-photos__container">
+					<h2 class="office-photos__subtitle subtitle">Фотографии офиса компании</h2>
+					<div class="office-photos__slider swiper">
+						<div class="office-photos__wrapper swiper-wrapper">
+							<div class="office-photos__slide swiper-slide">
+								<div class="office-photos__image">
+									<picture><source srcset="img/office-photos/01.webp" type="image/webp"><img src="img/office-photos/01.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="office-photos__slide swiper-slide">
+								<div class="office-photos__image">
+									<picture><source srcset="img/office-photos/02.webp" type="image/webp"><img src="img/office-photos/02.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="office-photos__slide office-photos__slide_3 swiper-slide">
+								<div class="office-photos__image">
+									<picture><source srcset="img/office-photos/03.webp" type="image/webp"><img src="img/office-photos/03.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="office-photos__slide swiper-slide">
+								<div class="office-photos__image">
+									<picture><source srcset="img/office-photos/04.webp" type="image/webp"><img src="img/office-photos/04.jpg" alt="image"></picture>
+								</div>
+							</div>
+							<div class="office-photos__slide swiper-slide">
+								<div class="office-photos__image">
+									<picture><source srcset="img/office-photos/05.webp" type="image/webp"><img src="img/office-photos/05.jpg" alt="image"></picture>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+				<div class="footer__item">
+					<a target="_blank" href="index.html" class="footer__logo">
+						<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
+					</a>
+					<p class="footer__policy">© 2022 Все права защищены </p>
+				</div>
+				<nav class="footer__menu">
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link">
+								iOS
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Android
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								C++
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Java
+							</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link">
+								.NET
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Project Manager
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								JavaScript
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								PHP
+							</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link footer__link_active">
+								Найти работу
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Разместить резюме
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Рассылка вакансий
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Архив вакансий
+							</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link">
+								Добавить вакансию
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Поиск резюме
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Рассылка резюме
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Советы работодателю
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<ul data-da=".footer__item,1300,first" class="footer__actions">
+					<li>
+						<a class="_icon-phone-01" href="tel:+380632259999">+380 (63) 225 99 99</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+	</div>
+	<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+				Text
+			</div>
+		</div>
+	</div>
+</div> -->
+	<script src="js/app.min.js?_v=20231221195044"></script>
+</body>
+
+</html>

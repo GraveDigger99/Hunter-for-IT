@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Просмор блога</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231221195044">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header header_not-authorized">
+			<div class="header__container">
+				<a target="_blank" href="index.html" class="header__logo">
+					<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
+				</a>
+				<div class="header__menu menu">
+					<button type="button" class="menu__icon icon-menu">
+						<picture><source srcset="img/icons/burger-menu.webp" type="image/webp"><img src="img/icons/burger-menu.png" alt="icon:burger-menu"></picture>
+					</button>
+					<nav class="menu__body">
+						<div hidden class="menu__header">
+							<button aria-label="close-menu" class="menu__close _icon-close"></button>
+							<button data-da=".menu__header,845,2" type="button" class="sign-in _icon-sign-in">Вход</button>
+							<button aria-label="search" class="menu__search _icon-search"></button>
+						</div>
+						<ul class="menu__list">
+							<li class="menu__item"><a href="#" class="menu__link">Вакансии</a></li>
+							<li class="menu__item"><a href="#" class="menu__link menu__link_active">Резюме</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Новости</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Тарифы</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="header__actions">
+					<button type="button" class="sign-in sign-in_desktop _icon-sign-in">Вход</button>
+				</div>
+			</div>
+		</header>
+
+		<!-- When user authorizes  -->
+
+		<header hidden class="header header_authorized">
+			<div class="header__container">
+				<a target="_blank" href="index.html" class="header__logo">
+					<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
+				</a>
+				<div class="header__menu menu">
+					<button type="button" class="menu__icon icon-menu">
+						<picture><source srcset="img/icons/burger-menu.webp" type="image/webp"><img src="img/icons/burger-menu.png" alt="icon:burger-menu"></picture>
+					</button>
+					<nav class="menu__body">
+						<div hidden class="menu__header">
+							<button class="menu__close _icon-close"></button>
+							<button type="button" class="sign-out _icon-sign-in">Выйти</button>
+							<button class="menu__search _icon-search"></button>
+						</div>
+						<ul class="menu__list">
+							<li class="menu__item"><a href="#" class="menu__link">Вакансии</a></li>
+							<li class="menu__item"><a href="#" class="menu__link menu__link_active">Резюме</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Новости</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Тарифы</a></li>
+							<li class="menu__item"><a href="#" class="menu__link">Контакты</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="header__actions">
+					<div class="header__user user">
+						<a href="#" class="user__avatar">
+							<picture><source srcset="img/testing/1300x200.webp" type="image/webp"><img src="img/testing/1300x200.jpg" alt="image:avatar"></picture>
+						</a>
+						<span class="user__name">Tom</span>
+					</div>
+					<button type="button" class="sign-out sign-out_desktop _icon-sign-in">Выйти</button>
+				</div>
+			</div>
+		</header>
+		<main class="page page_view-blog">
+			<div class="cta">
+				<div class="cta__container">
+					<ul class="breadcrumbs">
+						<li class="breadcrumbs__item breadcrumbs__item_active">
+							<a target="_blank" href="index.html" class="breadcrumbs__link">Главная</a>
+						</li>
+						<li class="breadcrumbs__item breadcrumbs__item_active">
+							<a target="_blank" href="#" class="breadcrumbs__link">Статьи</a>
+						</li>
+						<li class="breadcrumbs__item">
+							Публикации
+						</li>
+					</ul>
+					<a href="#" class="cta__button _icon-right-arrow">Вернутся назад</a>
+				</div>
+			</div>
+			<section class="publications">
+				<div class="publications__container">
+					<aside class="publications__sidebar sidebar">
+						<form action="#" class="sidebar__search-block search-block ">
+							<input autocomplete="off" type="text" name="form[]" placeholder="Должность, язык, компания..." class="search-block__input">
+							<button aria-label="search" type="button" class="search-block__button _icon-search"></button>
+						</form>
+						<div class="sidebar__title sidebar__title_category">Вакансии</div>
+						<ul class="sidebar__vacancies-list">
+							<li>
+								<span class="sidebar__vacancies-header">Senior Java Developer; Sign-on Bonus:</span>
+								<span class="sidebar__vacancies-price">$1,000</span>
+								<div class="sidebar__vacancies-company">
+									<picture><source srcset="img/resume/user-image.webp" type="image/webp"><img src="img/resume/user-image.jpg" alt="image"></picture>
+									<span class="sidebar__vacancies-name">DataArt</span>
+								</div>
+							</li>
+							<li>
+								<span class="sidebar__vacancies-header">Senior Java Developer; Sign-on Bonus:</span>
+								<span class="sidebar__vacancies-price">$1,000</span>
+								<div class="sidebar__vacancies-company">
+									<picture><source srcset="img/resume/user-image.webp" type="image/webp"><img src="img/resume/user-image.jpg" alt="image"></picture>
+									<span class="sidebar__vacancies-name">DataArt</span>
+								</div>
+							</li>
+							<li>
+								<span class="sidebar__vacancies-header">Senior Java Developer; Sign-on Bonus:</span>
+								<span class="sidebar__vacancies-price">$1,000</span>
+								<div class="sidebar__vacancies-company">
+									<picture><source srcset="img/resume/user-image.webp" type="image/webp"><img src="img/resume/user-image.jpg" alt="image"></picture>
+									<span class="sidebar__vacancies-name">DataArt</span>
+								</div>
+							</li>
+							<li>
+								<span class="sidebar__vacancies-header">Senior Java Developer; Sign-on Bonus:</span>
+								<span class="sidebar__vacancies-price">$1,000</span>
+								<div class="sidebar__vacancies-company">
+									<picture><source srcset="img/resume/user-image.webp" type="image/webp"><img src="img/resume/user-image.jpg" alt="image"></picture>
+									<span class="sidebar__vacancies-name">DataArt</span>
+								</div>
+							</li>
+							<li>
+								<span class="sidebar__vacancies-header">Senior Java Developer; Sign-on Bonus:</span>
+								<span class="sidebar__vacancies-price">$1,000</span>
+								<div class="sidebar__vacancies-company">
+									<picture><source srcset="img/resume/user-image.webp" type="image/webp"><img src="img/resume/user-image.jpg" alt="image"></picture>
+									<span class="sidebar__vacancies-name">DataArt</span>
+								</div>
+							</li>
+						</ul>
+						<a href="#" class="sidebar__banner">
+							<picture><source data-srcset="img/banners/01.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/banners/01.jpg" alt="banner"></picture>
+						</a>
+					</aside>
+					<section class="publications__content">
+						<div class="publications__header">
+							<h1 class="publications__title title">Запускай, чтобы заработать: на каком блокчейне запустить P2E
+								игру</h1>
+							<ul data-da=".publications__content,1367,2" class="publications__social social">
+								<li>
+									<a aria-label="facebook" class="social__facebook" href="#">
+										<span style="--icon-facebook: url(img/icons/facebook.svg)"></span>
+									</a>
+								</li>
+								<li>
+									<a aria-label="twitter" class="social__twitter" href="#">
+										<span style="--icon-twitter: url(img/icons/twitter.svg)"></span>
+									</a>
+								</li>
+								<li>
+									<a aria-label="google-plus" class="social__google-plus" href="#">
+										<span style="--icon-google-plus: url(img/icons/google-plus.svg)"></span>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="publications__info">
+							<time datetime="2022-01-08" class="publications__date date">08 янв 2022</time>
+							<div class="publications__author">
+								<div class="publications__label">Автор:</div>
+								<a href="#" class="publications__link">Bams</a>
+							</div>
+						</div>
+						<div class="publications__body">
+							<p>
+								Первые GameFi проекты появились еще в 2013 году, но настоящую популярность направление получило
+								под конец 2020 года. В
+								августе
+								2021 года криптогейминг пережил настоящий бум. Посты и статьи об играх, которые созданы для
+								заработка, появлялись из-за
+								каждого
+								угла. Только ленивый не обсуждал миллионное состояние, которое можно заработать сидя на диване.
+								Популярность P2E-игр и
+								доход
+								компаний до сих пор растет огромными темпами: только в Dappradar можно найти более 1 300
+								проектов, а некоторые
+								разработчики
+								получают огромные деньги. Например, разработчик Axie Infinity заработал $800 миллионов за месяц.
+								Игра уже потеряла былую
+								актуальность и доходность, но это пример того, насколько прибыльно, для владельцев, создание
+								таких проектов.
+							</p>
+							<div class="publications__wrapper">
+								<picture><source data-srcset="img/view-pages/currentchapter.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/view-pages/currentchapter.jpg" alt="image"></picture>
+								<ul class="publications__list">
+									<li>
+										Первые GameFi проекты появились еще в 2013 году, но настоящую
+										популярность направление получило под конец 2020 года. В августе 2021
+										года криптогейминг пережил настоящий бум. Посты и статьи об играх,
+										которые созданы для заработка, появлялись из-за каждого угла. Только
+										ленивый не обсуждал миллионное состояние, которое можно заработать
+										сидя на диване.
+									</li>
+									<li>
+										Популярность P2E-игр и доход компаний до сих пор растет огромными
+										темпами: только в Dappradar можно найти более 1 300 проектов, а
+										некоторые разработчики получают огромные деньги. Например,
+										разработчик Axie Infinity заработал $800 миллионов за месяц. Игра уже
+										потеряла былую актуальность и доходность, но это пример того, насколько
+										прибыльно, для владельцев, создание таких проектов.
+									</li>
+								</ul>
+							</div>
+							<p>
+								Любители криптоигр теперь делятся на два лагеря: одни играют, чтобы заработать, а другие —
+								создают игры для первых. Если
+								вы хотите
+								примкнуть ко второму лагерю, то эта статья для вас. Мы расскажем о блокчейнах для запуска своего
+								проекта и поделимся
+								информацией
+								о том, где можно получить спонсорские деньги на старт.
+							</p>
+							<div class="publications__topic">Что такое P2E-игры и почему они могут занять место обычных
+								онлайн-игр</div>
+							<p>
+								Что такое P2E-игры и почему они могут занять место обычных онлайн-игр P2E или Play-to-Earn — это
+								игры, в которых
+								пользователи
+								зарабатывают токены или NFT-предметы, а затем продают на рынке за криптовалюту. Онлайн-игры
+								хранят данные на сервере,
+								который
+								контролируется разработчиками. Там находится информация об учетной записи, история игровых
+								событий и предметов, которые
+								получают геймеры. Эта информация принадлежит компании, и игроки просто не имеют никаких прав на
+								своих персонажей,
+								аккаунтов
+								или заработанные предметы. Даже если они куплены за реальные деньги во внутреннем магазине.
+								Честные игроки получают баны
+								аккаунтов за то, что играли не так, как хотелось разработчикам. В P2E-проектах тоже бывают баны,
+								но за абуз игровых
+								механик или
+								очевидное нарушение пользовательского соглашения. Использование блокчейна устраняет и смягчает
+								эту проблему, а главное —
+								позволяет игрокам владеть своими игровыми предметами. Это делает вложения в игры не пустой
+								тратой денег, а инвестициями
+								в
+								будущий доход.
+							</p>
+							<div class="publications__image">
+								<picture><source data-srcset="img/view-pages/02.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/view-pages/02.jpg" alt="image"></picture>
+							</div>
+							<p>
+								Подавляющее число геймеров негативно относится к формату P2E и самим NFT, но некоторые понимают,
+								что это возможность
+								сделать
+								развлечение дополнительным заработком. Да, на сегодня 95-99% P2E представляют собой скорее
+								разновидность пирамиды, но
+								индустрия развивается, и AAA проекты с интересным геймплеем вполне могут запуститься в ближайшие
+								годы. Владельцы крупных
+								издательств уже думают о том, как внедрить NFT в готовые игры или запустить новые и не потерять
+								последних фанатов.
+								Например,
+								Ubisoft анонсировали выход NFT-игры, но публика отреагировала на это негативно. Проект, который
+								планируют выпустить на
+								Tezos,
+								собрал много дизлайков и негативных комментариев на YouTube. А до этого разработчики
+								S.T.A.L.K.E.R. 2: Heart of
+								Chernobyl удалили весь
+								NFT-контент после критики в свой адрес.
+							</p>
+							<div class="publications__topic">Но есть и те, кто активно рекламируется тем, что открыто
+								предлагает деньги геймдевам. Например:</div>
+							<ul class="publications__list publications__list_bullet ">
+								<li>
+									BSC и Animoca Brands объявили, что готовы спонсировать GameFi проекты на блокчейне BSC. На
+									это было выделено $200
+									миллионов;
+								</li>
+								<li>
+									Блокчейн-компания Enjin создала фонд в $100 миллионов, чтобы поддержать разработчиков NFT игр
+									на Efinity;
+								</li>
+								<li>
+									Инвесткомпания Mechanism Capital анонсировала запуск фонда в $100 миллионов для проектов P2E;
+								</li>
+								<li>
+									Блокчейн TRON готов потратить $300 миллионов на перспективные проекты;
+								</li>
+								<li>
+									Oasis Foundation готова потратить $160 миллионов для финансирования разработчиков Dapps на
+									базе Oasis Network, включая
+									DeFi,
+									NFT и метавселенные;
+								</li>
+								<li>
+									Animoca Brands и Brinc запустили фонд в $30 миллионов на P2E-игры.
+								</li>
+							</ul>
+							<p>
+								Это список актуальных фондов, которые появились с начала года и ждут геймдевов с крутыми идеями.
+								Разработчики не дадут
+								денег,
+								если вы просто напишите: «Привет, я классный. Хочу запустить свою игру и рубить денег!». Нужно
+								расписать концепцию,
+								бизнес-план и
+								со всем этим идти на диалог. Если ваш проект окажется перспективным, то вам помогут и с
+								деньгами, и со специалистами.
+								Например,
+								Illuvium — это первый AAA проект среди P2E-игр, который работает на блокчейне Ethereum. Проект
+								смог получить
+								финансирование на $5
+								миллионов, в котором участвовали Framework Ventures и IOSG Ventures. Позже в него финансировали
+								фонды LD Capital, Delphi
+								Digital, Lotus
+								Capital и Bitscale Capital.
+							</p>
+						</div>
+						<div class="publications__comments comments">
+							<h2 class="comments__subtitle subtitle">3 Комментария</h2>
+							<div class="comments__items">
+								<div class="comments__item">
+									<div class="comments__inner">
+										<div class="comments__image">
+											<picture><source data-srcset="img/view-pages/comments-image.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/view-pages/comments-image.jpg" alt="image"></picture>
+										</div>
+										<div class="comments__mobile-wrapper comments__mobile-wrapper_1"></div>
+									</div>
+									<div class="comments__body">
+										<a data-da=".comments__mobile-wrapper_1,991,1" href="#" class="comments__author">Ooooort</a>
+										<p class="comments__text">а что вообще нужно еще для создания своей игры и какая команда?
+											наверное же и программисты
+											нужны, и дизайнеры..... хотелось бы продолжение увидеть, подробнее тему раскрыть и
+											кейсы,
+											личный опыт!,,</p>
+									</div>
+									<div data-da=".comments__mobile-wrapper_1,991,2" class="comments__actions">
+										<time datetime="2022-01-08" class="comments__date date date_dark date_no-decor ">08 янв
+											2022</time>
+										<div class="comments__cta">
+											<button aria-label="dislike-button" type="button" class="comments__dislike _icon-like-03"></button>
+											<span class="comments__count">2</span>
+											<button aria-label="like-button" type="button" class="comments__like _icon-like-03"></button>
+										</div>
+									</div>
+								</div>
+								<div class="comments__item">
+									<div class="comments__inner">
+										<div class="comments__image">
+											<picture><source data-srcset="img/view-pages/comments-image.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/view-pages/comments-image.jpg" alt="image"></picture>
+										</div>
+										<div class="comments__mobile-wrapper comments__mobile-wrapper_2"></div>
+									</div>
+									<div class="comments__body">
+										<a data-da=".comments__mobile-wrapper_2,991,1" href="#" class="comments__author">Ooooort</a>
+										<p class="comments__text">а что вообще нужно еще для создания своей игры и какая команда?
+											наверное же и программисты
+											нужны, и дизайнеры..... хотелось бы продолжение увидеть, подробнее тему раскрыть и
+											кейсы,
+											личный опыт!,,</p>
+									</div>
+									<div data-da=".comments__mobile-wrapper_2,991,2" class="comments__actions">
+										<time datetime="2022-01-08" class="comments__date date date_dark date_no-decor ">08 янв
+											2022</time>
+										<div class="comments__cta">
+											<button aria-label="dislike-button" type="button" class="comments__dislike _icon-like-03"></button>
+											<span class="comments__count">2</span>
+											<button aria-label="like-button" type="button" class="comments__like _icon-like-03"></button>
+										</div>
+									</div>
+								</div>
+								<div class="comments__item">
+									<div class="comments__inner">
+										<div class="comments__image">
+											<picture><source data-srcset="img/view-pages/comments-image.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/view-pages/comments-image.jpg" alt="image"></picture>
+										</div>
+										<div class="comments__mobile-wrapper comments__mobile-wrapper_3"></div>
+									</div>
+									<div class="comments__body">
+										<a data-da=".comments__mobile-wrapper_3,991,1" href="#" class="comments__author">Ooooort</a>
+										<p class="comments__text">а что вообще нужно еще для создания своей игры и какая команда?
+											наверное же и программисты
+											нужны, и дизайнеры..... хотелось бы продолжение увидеть, подробнее тему раскрыть и
+											кейсы,
+											личный опыт!,,</p>
+									</div>
+									<div data-da=".comments__mobile-wrapper_3,991,1" class="comments__actions">
+										<time datetime="2022-01-08" class="comments__date date date_dark date_no-decor ">08 янв
+											2022</time>
+										<div class="comments__cta">
+											<button aria-label="dislike-button" type="button" class="comments__dislike _icon-like-03"></button>
+											<span class="comments__count">2</span>
+											<button aria-label="like-button" type="button" class="comments__like _icon-like-03"></button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<form action="#" class="publications__add-comments add-comments">
+							<div class="add-comments__image">
+								<picture><source srcset="img/view-pages/sketch-user.webp" type="image/webp"><img src="img/view-pages/sketch-user.jpg" alt="image"></picture>
+							</div>
+							<div class="add-comments__body">
+								<div class="add-comments__line">
+									<input placeholder="Имя" type="text" class="add-comments__input">
+								</div>
+								<div class="add-comments__line">
+									<textarea placeholder="Ваш комментарий" class="add-comments__textarea"></textarea>
+								</div>
+								<button type="submit" class="add-comments__button button">Отправить</button>
+							</div>
+						</form>
+						<div class="similar-articles">
+							<h2 class="similar-articles__subtitle subtitle">Похожие статьи</h2>
+							<div class="similar-articles__slider swiper">
+								<div class="similar-articles__wrapper swiper-wrapper">
+									<div class="similar-articles__slide swiper-slide">
+										<a href="#" class="similar-articles__image">
+											<picture><source srcset="img/news/01.webp" type="image/webp"><img src="img/news/01.jpg" alt="image"></picture>
+										</a>
+										<time datetime="2022-01-08" class="similar-articles__date date date_dark">08 янв
+											2022</time>
+										<div class="similar-articles__title">Темная тема на сайте: инструкцияпо применению</div>
+									</div>
+									<div class="similar-articles__slide swiper-slide">
+										<a href="#" class="similar-articles__image">
+											<picture><source srcset="img/news/06.webp" type="image/webp"><img src="img/news/06.jpg" alt="image"></picture>
+										</a>
+										<time datetime="2022-01-08" class="similar-articles__date date date_dark">08 янв
+											2022</time>
+										<div class="similar-articles__title">Темная тема на сайте: инструкцияпо применению</div>
+									</div>
+									<div class="similar-articles__slide swiper-slide">
+										<a href="#" class="similar-articles__image">
+											<picture><source srcset="img/news/02.webp" type="image/webp"><img src="img/news/02.jpg" alt="image"></picture>
+										</a>
+										<time datetime="2022-01-08" class="similar-articles__date date date_dark">08 янв
+											2022</time>
+										<div class="similar-articles__title">Темная тема на сайте: инструкцияпо применению</div>
+									</div>
+									<div class="similar-articles__slide swiper-slide">
+										<a href="#" class="similar-articles__image">
+											<picture><source srcset="img/news/01.webp" type="image/webp"><img src="img/news/01.jpg" alt="image"></picture>
+										</a>
+										<time datetime="2022-01-08" class="similar-articles__date date date_dark">08 янв
+											2022</time>
+										<div class="similar-articles__title">Темная тема на сайте: инструкцияпо применению</div>
+									</div>
+									<div class="similar-articles__slide swiper-slide">
+										<a href="#" class="similar-articles__image">
+											<picture><source srcset="img/news/06.webp" type="image/webp"><img src="img/news/06.jpg" alt="image"></picture>
+										</a>
+										<time datetime="2022-01-08" class="similar-articles__date date date_dark">08 янв
+											2022</time>
+										<div class="similar-articles__title">Темная тема на сайте: инструкцияпо применению</div>
+									</div>
+									<div class="similar-articles__slide swiper-slide">
+										<a href="#" class="similar-articles__image">
+											<picture><source srcset="img/news/02.webp" type="image/webp"><img src="img/news/02.jpg" alt="image"></picture>
+										</a>
+										<time datetime="2022-01-08" class="similar-articles__date date date_dark">08 янв
+											2022</time>
+										<div class="similar-articles__title">Темная тема на сайте: инструкцияпо применению</div>
+									</div>
+								</div>
+							</div>
+							<div class="swiper-pagination"></div>
+						</div>
+					</section>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+				<div class="footer__item">
+					<a target="_blank" href="index.html" class="footer__logo">
+						<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
+					</a>
+					<p class="footer__policy">© 2022 Все права защищены </p>
+				</div>
+				<nav class="footer__menu">
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link">
+								iOS
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Android
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								C++
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Java
+							</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link">
+								.NET
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Project Manager
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								JavaScript
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								PHP
+							</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link footer__link_active">
+								Найти работу
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Разместить резюме
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Рассылка вакансий
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Архив вакансий
+							</a>
+						</li>
+					</ul>
+					<ul class="footer__list">
+						<li>
+							<a href="#" class="footer__link">
+								Добавить вакансию
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Поиск резюме
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Рассылка резюме
+							</a>
+						</li>
+						<li>
+							<a href="#" class="footer__link">
+								Советы работодателю
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<ul data-da=".footer__item,1300,first" class="footer__actions">
+					<li>
+						<a class="_icon-phone-01" href="tel:+380632259999">+380 (63) 225 99 99</a>
+					</li>
+				</ul>
+			</div>
+		</footer>
+	</div>
+	<!-- <div id="popup" aria-hidden="true" class="popup">
+	<div class="popup__wrapper">
+		<div class="popup__content">
+			<button data-close type="button" class="popup__close">Закрыть</button>
+			<div class="popup__text">
+				Text
+			</div>
+		</div>
+	</div>
+</div> -->
+	<script src="js/app.min.js?_v=20231221195044"></script>
+</body>
+
+</html>

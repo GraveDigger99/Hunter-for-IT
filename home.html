@@ -2,11 +2,9 @@
 <html lang="ru">
 
 <head>
-	<title>HomePage</title>
+	<title>Главная</title>
 	<meta charset="UTF-8">
-	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20231213091748">
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231221195044">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -23,9 +21,9 @@
 					</button>
 					<nav class="menu__body">
 						<div hidden class="menu__header">
-							<button class="menu__close _icon-close"></button>
+							<button aria-label="close-menu" class="menu__close _icon-close"></button>
 							<button data-da=".menu__header,845,2" type="button" class="sign-in _icon-sign-in">Вход</button>
-							<button class="menu__search _icon-search"></button>
+							<button aria-label="search" class="menu__search _icon-search"></button>
 						</div>
 						<ul class="menu__list">
 							<li class="menu__item"><a href="#" class="menu__link">Вакансии</a></li>
@@ -80,9 +78,536 @@
 			</div>
 		</header>
 		<main class="page">
-			<div class="page__container">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt in harum veniam, porro ratione, beatae itaque explicabo, doloremque quos sapiente ipsum cupiditate totam quasi nam! Error debitis possimus a tempora. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique voluptatibus eveniet consequatur beatae commodi harum dolorem quis dignissimos aspernatur labore! Dolorum officia quo quod quas nam modi assumenda maiores, mollitia, consequuntur aliquam perferendis itaque, a quisquam voluptas necessitatibus labore. Obcaecati, reprehenderit. Modi minus ratione officia laborum illo mollitia doloribus, corporis dolor voluptate eum ad nam ipsum non. Consectetur, impedit. Beatae, laborum aliquid vel aspernatur sunt dicta fugit nihil ea optio. Culpa sapiente perspiciatis magni. Numquam ut minus magnam cumque, distinctio enim, non vitae explicabo veritatis illum, sequi aperiam ex! Pariatur natus harum accusantium nihil provident voluptatem minima consequatur ullam molestiae vel. Non repudiandae adipisci est, et asperiores, eos illo maiores fuga optio voluptas dolorem. Porro provident earum aspernatur quisquam quam recusandae, repellendus, optio assumenda doloribus laborum ex debitis sit sed, fugiat possimus tenetur libero nesciunt voluptas molestiae mollitia. Vitae cum perspiciatis, voluptatibus ipsam cupiditate, rerum et quibusdam excepturi maxime molestias unde est doloremque non sit impedit necessitatibus. Cumque incidunt temporibus explicabo quod voluptas quis quaerat, beatae, illo laborum iste natus voluptate aspernatur veniam assumenda aperiam, dicta dolorum itaque molestias sunt at omnis. Labore sunt quasi delectus possimus eum id minima itaque eveniet, neque, veniam ut. Velit dicta beatae itaque soluta, ab explicabo quam quod a, consequuntur hic eius pariatur maxime! Voluptatem natus deleniti maxime quaerat qui numquam veritatis nemo fugiat odit adipisci atque magni officiis hic omnis laudantium nostrum sunt repellat impedit iste esse, dolore eum voluptatibus harum. Asperiores vitae quo expedita veritatis rem eos, pariatur, doloribus quasi quidem quia magni repellat. Expedita sint asperiores cumque iusto, consequuntur magnam vel cupiditate. Pariatur facere saepe voluptate numquam adipisci dolor perferendis officiis ea in laboriosam quas natus a vero quae explicabo eveniet, laborum deserunt error quod beatae? Deleniti voluptatem quibusdam doloremque eveniet veniam maxime nulla voluptatibus inventore. Ducimus, corrupti laborum. Temporibus ex architecto eius explicabo voluptatibus ad aspernatur quaerat numquam fuga, sapiente aut omnis deserunt culpa illum non eum illo blanditiis porro nemo mollitia quasi veniam nesciunt? Qui ut velit, ullam minima voluptatum vitae at maiores illo quas? Culpa exercitationem magni laborum accusantium libero quae dignissimos vero repellat voluptatibus. Assumenda accusantium excepturi magni ipsum ipsam, minima reprehenderit necessitatibus fugit atque at minus molestiae velit ad sunt odio omnis id distinctio. Debitis soluta molestias at veritatis, labore aperiam natus rem laborum expedita dolorem ut magnam accusantium eius nesciunt voluptatibus! Dignissimos eius consequuntur rerum commodi aperiam earum sunt at amet magni. Ipsa nam facilis exercitationem placeat quod vitae, adipisci assumenda quas inventore quis. Eaque dignissimos exercitationem debitis perspiciatis. Numquam, sed natus! Accusantium similique animi fuga expedita nam. Autem ab tempore eum voluptas, iure error asperiores ea hic sunt tenetur, doloribus architecto provident! Alias ipsa quidem ducimus reiciendis quos vero hic, sed magni perspiciatis amet molestias nisi ex pariatur. Reprehenderit incidunt earum exercitationem inventore sequi veritatis optio beatae officiis, quas minus aliquid maiores doloribus, libero labore debitis atque non fugit fugiat. Nobis beatae corrupti saepe, nostrum at officiis quisquam. Maiores, similique voluptate laboriosam nulla ea, ex optio unde, natus eum impedit iure sint eos culpa!
-			</div>
+			<section class="hero">
+				<div class="hero__container">
+					<div class="hero__body">
+						<h1 class="hero__title title title_white">Всегда свежие вакансии</h1>
+						<p class="hero__text">Только вы решаете, кому и когда открыть контакты.</p>
+						<a href="#" class="hero__button button-readmore button-readmore _icon-right-arrow"">Добавить вакансию</a>
+					</div>
+					<div class=" hero__form">
+							<form action="#" class="hero__search _icon-search">
+								<input placeholder="Должность, язык, компания..." type="text" class="hero__input">
+								<button type="submit" class="hero__button button">Искать</button>
+							</form>
+							<div class="hero__quick-jump quick-jump">
+								<a href="#" class="quick-jump__link">
+									<span>Быстрый переход:</span> Design, начинающим, удаленная работа, работа за границей.
+								</a>
+							</div>
+					</div>
+			</section>
+			<section class="information">
+				<div class="information__container">
+					<div class="information__block block-information">
+						<div class="block-information__header">
+							<h2 class="block-information__subtitle subtitle subtitle_white">Новые вакансии</h2>
+							<div class="block-information__actions">
+								<button class="block-information__button">Новые</button>
+								<button class="block-information__button block-information__button_archive">Архив</button>
+							</div>
+						</div>
+						<div class="block-information__body block-information__body_list-target">
+							<div class="block-information__row">
+								<p class="block-information__category-name"><span>Java</span> 512</p>
+								<div class="block-information__items">
+									<div class="block-information__item">
+										<p class="block-information__description">Senior Java Developer; Sign-on Bonus: $1,000</p>
+										<div class="block-information__company">
+											<div class="block-information__image"><picture><source srcset="img/resume/user-image.webp" type="image/webp"><img src="img/resume/user-image.jpg" alt="Logo:DataArt"></picture></div>
+											<p class="block-information__name-company">DataArt</p>
+										</div>
+									</div>
+									<div class="block-information__item">
+										<p class="block-information__description">Senior Python Developer (with Data Platform
+											Skills)</p>
+										<div class="block-information__company">
+											<div class="block-information__image"><picture><source srcset="img/resume/LUN.webp" type="image/webp"><img src="img/resume/LUN.png" alt="Logo:ЛУН"></picture>
+											</div>
+											<p class="block-information__name-company">ЛУН</p>
+										</div>
+									</div>
+									<div class="block-information__item">
+										<p class="block-information__description">QA Automation (C#) Engineer, Registry App.
+											Sign-on Bonus $1,000</p>
+										<div class="block-information__company">
+											<div class="block-information__image"><picture><source srcset="img/resume/SoftServer.webp" type="image/webp"><img src="img/resume/SoftServer.png" alt="Logo:SoftServe"></picture></div>
+											<p class="block-information__name-company">SoftServe</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="block-information__row">
+								<p class="block-information__category-name"><span>.NET</span> 125</p>
+								<div class="block-information__items">
+									<div class="block-information__item">
+										<p class="block-information__description">Senior Java Developer; Sign-on Bonus: $1,000</p>
+										<div class="block-information__company">
+											<div class="block-information__image"><picture><source srcset="img/resume/user-image.webp" type="image/webp"><img src="img/resume/user-image.jpg" alt="Logo:DataArt"></picture></div>
+											<p class="block-information__name-company">DataArt</p>
+										</div>
+									</div>
+									<div class="block-information__item">
+										<p class="block-information__description">Senior Python Developer (with Data Platform
+											Skills), Global Music Company</p>
+										<div class="block-information__company">
+											<div class="block-information__image"><picture><source srcset="img/resume/LUN.webp" type="image/webp"><img src="img/resume/LUN.png" alt="Logo:ЛУН"></picture>
+											</div>
+											<p class="block-information__name-company">ЛУН</p>
+										</div>
+									</div>
+									<div class="block-information__item">
+										<p class="block-information__description">QA Automation (C#) Engineer, Registry App.
+											Sign-on Bonus $1,000</p>
+										<div class="block-information__company">
+											<div class="block-information__image"><picture><source srcset="img/resume/SoftServer.webp" type="image/webp"><img src="img/resume/SoftServer.png" alt="Logo:SoftServe"></picture></div>
+											<p class="block-information__name-company">SoftServe</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a href="#" class="block-information__button-readmore _icon-right-arrow button-readmore">Смотреть все вакансии</a>
+					</div>
+					<div class="information__block block-information">
+						<div class="block-information__header">
+							<h2 class="block-information__subtitle subtitle subtitle_white">Новые Резюме</h2>
+							<div class="block-information__actions">
+								<button class="block-information__button">Новые</button>
+								<button class="block-information__button block-information__button_archive">Архив</button>
+							</div>
+						</div>
+						<div class="block-information__body">
+							<div class="block-information__row">
+								<div class="block-information__items">
+									<div class="block-information__item">
+										<div class="block-information__avatar">
+											<picture><source srcset="img/view-pages/mobile-avatar.webp" type="image/webp"><img src="img/view-pages/mobile-avatar.png" alt="image"></picture>
+										</div>
+										<div class="block-information__content content-block">
+											<div class="content-block__topic">Junior Front End Developer</div>
+											<div class="content-block__items">
+												<div class="content-block__country">Україна</div>
+												<div class="content-block__city">Львів, віддалено</div>
+												<div class="content-block__price">$800</div>
+												<div class="content-block__experience">1,5 роки досвіду</div>
+												<div class="content-block__level">Intermediate</div>
+											</div>
+										</div>
+									</div>
+									<div class="block-information__item">
+										<div class="block-information__avatar">
+											<picture><source srcset="img/view-pages/mobile-avatar.webp" type="image/webp"><img src="img/view-pages/mobile-avatar.png" alt="image"></picture>
+										</div>
+										<div class="block-information__content content-block">
+											<div class="content-block__topic">Junior Front End Developer</div>
+											<div class="content-block__items">
+												<div class="content-block__country">Україна</div>
+												<div class="content-block__city">Львів, віддалено</div>
+												<div class="content-block__price">$800</div>
+												<div class="content-block__experience">1,5 роки досвіду</div>
+												<div class="content-block__level">Intermediate</div>
+											</div>
+										</div>
+									</div>
+									<div class="block-information__item">
+										<div class="block-information__avatar">
+											<picture><source srcset="img/view-pages/mobile-avatar.webp" type="image/webp"><img src="img/view-pages/mobile-avatar.png" alt="image"></picture>
+										</div>
+										<div class="block-information__content content-block">
+											<div class="content-block__topic">Junior Front End Developer</div>
+											<div class="content-block__items">
+												<div class="content-block__country">Україна</div>
+												<div class="content-block__city">Львів, віддалено</div>
+												<div class="content-block__price">$800</div>
+												<div class="content-block__experience">1,5 роки досвіду</div>
+												<div class="content-block__level">Intermediate</div>
+											</div>
+										</div>
+									</div>
+									<div class="block-information__item">
+										<div class="block-information__avatar">
+											<picture><source srcset="img/view-pages/mobile-avatar.webp" type="image/webp"><img src="img/view-pages/mobile-avatar.png" alt="image"></picture>
+										</div>
+										<div class="block-information__content content-block">
+											<div class="content-block__topic">Junior Front End Developer</div>
+											<div class="content-block__items">
+												<div class="content-block__country">Україна</div>
+												<div class="content-block__city">Львів, віддалено</div>
+												<div class="content-block__price">$800</div>
+												<div class="content-block__experience">1,5 роки досвіду</div>
+												<div class="content-block__level">Intermediate</div>
+											</div>
+										</div>
+									</div>
+									<div class="block-information__item">
+										<div class="block-information__avatar">
+											<picture><source srcset="img/view-pages/mobile-avatar.webp" type="image/webp"><img src="img/view-pages/mobile-avatar.png" alt="image"></picture>
+										</div>
+										<div class="block-information__content content-block">
+											<div class="content-block__topic">Junior Front End Developer</div>
+											<div class="content-block__items">
+												<div class="content-block__country">Україна</div>
+												<div class="content-block__city">Львів, віддалено</div>
+												<div class="content-block__price">$800</div>
+												<div class="content-block__experience">1,5 роки досвіду</div>
+												<div class="content-block__level">Intermediate</div>
+											</div>
+										</div>
+									</div>
+									<div class="block-information__item">
+										<div class="block-information__avatar">
+											<picture><source srcset="img/view-pages/mobile-avatar.webp" type="image/webp"><img src="img/view-pages/mobile-avatar.png" alt="image"></picture>
+										</div>
+										<div class="block-information__content content-block">
+											<div class="content-block__topic">Junior Front End Developer</div>
+											<div class="content-block__items">
+												<div class="content-block__country">Україна</div>
+												<div class="content-block__city">Львів, віддалено</div>
+												<div class="content-block__price">$800</div>
+												<div class="content-block__experience">1,5 роки досвіду</div>
+												<div class="content-block__level">Intermediate</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a href="#" class="block-information__button-readmore _icon-right-arrow button-readmore">Смотреть все вакансии</a>
+					</div>
+				</div>
+			</section>
+			<section class="current-salaries">
+				<div class="current-salaries__container">
+					<div class="current-salaries__header">
+						<h2 class="current-salaries__subtitle subtitle subtitle_white">Следи за актуальными зарплатами</h2>
+						<p class="current-salaries__description">Следи за актуальными зарплатами</p>
+					</div>
+					<div class="current-salaries__slider swiper">
+						<div class="current-salaries__wrapper swiper-wrapper">
+							<div class="current-salaries__slide swiper-slide">
+								<div class="current-salaries__card">
+									<span class="current-salaries__tag">Тестирование</span>
+									<p class="current-salaries__price"><span>126 285</span> грн</p>
+									<p class="current-salaries__text">Средняя зарплата на основании
+										440 анкет за 1-е пол. 2022 года</p>
+									<div class="current-salaries__steps">
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">230 000 грн</span>
+												<p class="current-salaries__range">максимум</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">117 500 грн</span>
+												<p class="current-salaries__range">медиана</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">40 000 грн</span>
+												<p class="current-salaries__range">минимум</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="current-salaries__slide swiper-slide">
+								<div class="current-salaries__card">
+									<span class="current-salaries__tag">Тестирование</span>
+									<p class="current-salaries__price"><span>126 285</span> грн</p>
+									<p class="current-salaries__text">Средняя зарплата на основании
+										440 анкет за 1-е пол. 2022 года</p>
+									<div class="current-salaries__steps">
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">230 000 грн</span>
+												<p class="current-salaries__range">максимум</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">117 500 грн</span>
+												<p class="current-salaries__range">медиана</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">40 000 грн</span>
+												<p class="current-salaries__range">минимум</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="current-salaries__slide swiper-slide">
+								<div class="current-salaries__card">
+									<span class="current-salaries__tag">Тестирование</span>
+									<p class="current-salaries__price"><span>126 285</span> грн</p>
+									<p class="current-salaries__text">Средняя зарплата на основании
+										440 анкет за 1-е пол. 2022 года</p>
+									<div class="current-salaries__steps">
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">230 000 грн</span>
+												<p class="current-salaries__range">максимум</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">117 500 грн</span>
+												<p class="current-salaries__range">медиана</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">40 000 грн</span>
+												<p class="current-salaries__range">минимум</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="current-salaries__slide swiper-slide">
+								<div class="current-salaries__card">
+									<span class="current-salaries__tag">Тестирование</span>
+									<p class="current-salaries__price"><span>126 285</span> грн</p>
+									<p class="current-salaries__text">Средняя зарплата на основании
+										440 анкет за 1-е пол. 2022 года</p>
+									<div class="current-salaries__steps">
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">230 000 грн</span>
+												<p class="current-salaries__range">максимум</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">117 500 грн</span>
+												<p class="current-salaries__range">медиана</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">40 000 грн</span>
+												<p class="current-salaries__range">минимум</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="current-salaries__slide swiper-slide">
+								<div class="current-salaries__card">
+									<span class="current-salaries__tag">Тестирование</span>
+									<p class="current-salaries__price"><span>126 285</span> грн</p>
+									<p class="current-salaries__text">Средняя зарплата на основании
+										440 анкет за 1-е пол. 2022 года</p>
+									<div class="current-salaries__steps">
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">230 000 грн</span>
+												<p class="current-salaries__range">максимум</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">117 500 грн</span>
+												<p class="current-salaries__range">медиана</p>
+											</div>
+										</div>
+										<div class="current-salaries__item">
+											<div class="current-salaries__inner">
+												<span class="current-salaries__value">40 000 грн</span>
+												<p class="current-salaries__range">минимум</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<button aria-label="next-slide-button" type="button" class="swiper-button-next swiper-button-next_current-salaries _icon-arrow-down"></button>
+					</div>
+				</div>
+			</section>
+			<section class="blogs blogs_main">
+				<div class="blogs__container">
+					<div class="blogs__header">
+						<h2 class="blogs__subtitle subtitle subtitle_white">Блог</h2>
+						<p class="blogs__description">Делимся полезным для получения лучшей работы в вашей жизни</p>
+					</div>
+					<nav class="blogs__navigation blogs__navigation_for-dark-version">
+						<button type="button" class="blogs__button blogs__button_all">Все статьи</button>
+						<button type="button" class="blogs__button">Разработка</button>
+						<button type="button" class="blogs__button blogs__button_active">Дизайн</button>
+						<button type="button" class="blogs__button">Аналитика</button>
+						<button type="button" class="blogs__button">Маркетинг</button>
+						<button type="button" class="blogs__button">Бизнес</button>
+						<button type="button" class="blogs__button">Автоматизация</button>
+					</nav>
+					<div class="blogs__slider blogs__slider_not-transform swiper">
+						<div class="swiper-wrapper blogs__wrapper">
+							<div class="blogs__slide swiper-slide">
+								<div class="blogs__image">
+									<picture><source data-srcset="img/blogs/01.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/blogs/01.png" alt="image"></picture>
+									<a href="#" class="blogs__button-readmore button-readmore _icon-right-arrow">Читать
+										больше</a>
+								</div>
+								<div class="blogs__content">
+									<span class="blogs__date date date_dark">сегодня в <time datetime="17:44">17:44</time>
+									</span>
+									<div class="blogs__label blogs__label_white">
+										Обзор олимпиады AIIJC 2021
+										и разбор задачи трека NLP
+									</div>
+									<div class="blogs__footer blogs__footer_white">
+										<p class="blogs__author">Автор: <span>Torrex</span></p>
+										<p class="blogs__views">Просмотров: <span>254</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="blogs__slide swiper-slide">
+								<div class="blogs__image">
+									<picture><source data-srcset="img/blogs/02.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/blogs/02.png" alt="image"></picture>
+									<a href="#" class="blogs__button-readmore button-readmore _icon-right-arrow">Читать
+										больше</a>
+								</div>
+								<div class="blogs__content">
+									<span class="blogs__date date date_dark">сегодня в <time datetime="17:44">17:44</time>
+									</span>
+									<div class="blogs__label blogs__label_white">
+										Обзор олимпиады AIIJC 2021
+										и разбор задачи трека NLP
+									</div>
+									<div class="blogs__footer blogs__footer_white">
+										<p class="blogs__author">Автор: <span>Torrex</span></p>
+										<p class="blogs__views">Просмотров: <span>254</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="blogs__slide swiper-slide">
+								<div class="blogs__image">
+									<picture><source data-srcset="img/blogs/03.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/blogs/03.png" alt="image"></picture>
+									<a href="#" class="blogs__button-readmore button-readmore _icon-right-arrow">Читать
+										больше</a>
+								</div>
+								<div class="blogs__content">
+									<span class="blogs__date date date_dark">сегодня в <time datetime="17:44">17:44</time>
+									</span>
+									<div class="blogs__label blogs__label_white">
+										Обзор олимпиады AIIJC 2021
+										и разбор задачи трека NLP
+									</div>
+									<div class="blogs__footer blogs__footer_white">
+										<p class="blogs__author">Автор: <span>Torrex</span></p>
+										<p class="blogs__views">Просмотров: <span>254</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="blogs__slide swiper-slide">
+								<div class="blogs__image">
+									<picture><source data-srcset="img/blogs/01.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/blogs/01.png" alt="image"></picture>
+									<a href="#" class="blogs__button-readmore button-readmore _icon-right-arrow">Читать
+										больше</a>
+								</div>
+								<div class="blogs__content">
+									<span class="blogs__date date date_dark">сегодня в <time datetime="17:44">17:44</time>
+									</span>
+									<div class="blogs__label blogs__label_white">
+										Обзор олимпиады AIIJC 2021
+										и разбор задачи трека NLP
+									</div>
+									<div class="blogs__footer blogs__footer_white">
+										<p class="blogs__author">Автор: <span>Torrex</span></p>
+										<p class="blogs__views">Просмотров: <span>254</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="blogs__slide swiper-slide">
+								<div class="blogs__image">
+									<picture><source data-srcset="img/blogs/02.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/blogs/02.png" alt="image"></picture>
+									<a href="#" class="blogs__button-readmore button-readmore _icon-right-arrow">Читать
+										больше</a>
+								</div>
+								<div class="blogs__content">
+									<span class="blogs__date date date_dark">сегодня в <time datetime="17:44">17:44</time>
+									</span>
+									<div class="blogs__label blogs__label_white">
+										Обзор олимпиады AIIJC 2021
+										и разбор задачи трека NLP
+									</div>
+									<div class="blogs__footer blogs__footer_white">
+										<p class="blogs__author">Автор: <span>Torrex</span></p>
+										<p class="blogs__views">Просмотров: <span>254</span></p>
+									</div>
+								</div>
+							</div>
+							<div class="blogs__slide swiper-slide">
+								<div class="blogs__image">
+									<picture><source data-srcset="img/blogs/03.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/blogs/03.png" alt="image"></picture>
+									<a href="#" class="blogs__button-readmore button-readmore _icon-right-arrow">Читать
+										больше</a>
+								</div>
+								<div class="blogs__content">
+									<span class="blogs__date date date_dark">сегодня в <time datetime="17:44">17:44</time>
+									</span>
+									<div class="blogs__label blogs__label_white">
+										Обзор олимпиады AIIJC 2021
+										и разбор задачи трека NLP
+									</div>
+									<div class="blogs__footer blogs__footer_white">
+										<p class="blogs__author">Автор: <span>Torrex</span></p>
+										<p class="blogs__views">Просмотров: <span>254</span></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<button aria-label="next-slide-button" type="button" class="swiper-button-next swiper-button-next_blogs _icon-arrow-down"></button>
+					</div>
+				</div>
+			</section>
+			<section class="tariffs">
+				<div class="tariffs__container">
+					<div class="tariffs__header">
+						<h2 class="tariffs__subtitle subtitle subtitle_white">Тарифы</h2>
+						<p class="tariffs__description">Делимся вакансиями для получения лучшей работы вашей жизни</p>
+					</div>
+					<div class="tariffs__slider swiper">
+						<div class="tariffs__wrapper swiper-wrapper">
+							<div class="tariffs__slide swiper-slide">
+								<article class="tariffs__card tariffs__card_1">
+									<div class="tariffs__inner">
+										<h3 class="tariffs__label">Быстрый старт</h3>
+										<p class="tariffs__info"><span>1.5 млн.</span> Отзывов на вакансию</p>
+									</div>
+									<p class="tariffs__price">от <span>136 грн.</span> в месяц</p>
+									<a href="" class="tariffs__button button">Купить</a>
+								</article>
+							</div>
+							<div class="tariffs__slide swiper-slide">
+								<article class="tariffs__card tariffs__card_2">
+									<div class="tariffs__inner">
+										<h3 class="tariffs__label">Популярный</h3>
+										<p class="tariffs__info"><span>33.6 млн.</span> Отзывов на вакансию</p>
+									</div>
+									<p class="tariffs__price">от <span>210 грн.</span> в месяц</p>
+									<a href="" class="tariffs__button button">Купить</a>
+								</article>
+							</div>
+							<div class="tariffs__slide swiper-slide">
+								<article class="tariffs__card tariffs__card_3">
+									<div class="tariffs__inner tariffs__inner_white-divider">
+										<h3 class="tariffs__label">Бизнес</h3>
+										<p class="tariffs__info"><span>150 млн.</span> Отзывов на вакансию</p>
+									</div>
+									<p class="tariffs__price">от <span>450 грн.</span> в месяц</p>
+									<a href="" class="tariffs__button button button_black">Купить</a>
+								</article>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
@@ -90,7 +615,7 @@
 					<a target="_blank" href="index.html" class="footer__logo">
 						<picture><source srcset="img/logo/logo.webp" type="image/webp"><img src="img/logo/logo.png" alt="logo:HunterforIT"></picture>
 					</a>
-					<p class="footer__policy">© 2022 Все права защищены</p>
+					<p class="footer__policy">© 2022 Все права защищены </p>
 				</div>
 				<nav class="footer__menu">
 					<ul class="footer__list">
@@ -200,7 +725,7 @@
 		</div>
 	</div>
 </div> -->
-	<script src="js/app.min.js?_v=20231213091748"></script>
+	<script src="js/app.min.js?_v=20231221195044"></script>
 </body>
 
 </html>
