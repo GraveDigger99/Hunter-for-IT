@@ -4,7 +4,7 @@
 <head>
 	<title>Главная</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/style.min.css?_v=20231221195044">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231222045109">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -77,31 +77,64 @@
 				</div>
 			</div>
 		</header>
-		<main class="page">
+		<main class="page page_home">
 			<section class="hero">
 				<div class="hero__container">
-					<div class="hero__body">
-						<h1 class="hero__title title title_white">Всегда свежие вакансии</h1>
-						<p class="hero__text">Только вы решаете, кому и когда открыть контакты.</p>
-						<a href="#" class="hero__button button-readmore button-readmore _icon-right-arrow"">Добавить вакансию</a>
-					</div>
-					<div class=" hero__form">
-							<form action="#" class="hero__search _icon-search">
-								<input placeholder="Должность, язык, компания..." type="text" class="hero__input">
-								<button type="submit" class="hero__button button">Искать</button>
-							</form>
-							<div class="hero__quick-jump quick-jump">
-								<a href="#" class="quick-jump__link">
-									<span>Быстрый переход:</span> Design, начинающим, удаленная работа, работа за границей.
-								</a>
+					<div class="hero__slider swiper">
+						<div class="hero__wrapper swiper-wrapper">
+							<div class="hero__slide hero__slide_1 swiper-slide">
+								<div class="hero__body">
+									<h1 class="hero__title title title_white">Всегда свежие вакансии</h1>
+									<p class="hero__text">Только вы решаете, кому и когда открыть контакты.</p>
+									<a href="#" class="hero__button button-readmore button-readmore _icon-right-arrow"">Добавить вакансию</a>
+									<a href=" #" class="hero__link hero__link_3">Технологии</a>
+									<a href="#" class="hero__link hero__link_4">[Искусственный
+										интелект]</a>
+								</div>
+								<div class="hero__form">
+									<form action="#" class="hero__search _icon-search">
+										<input placeholder="Должность, язык, компания..." type="text" class="hero__input">
+										<button type="submit" class="hero__button button">Искать</button>
+									</form>
+									<div class="hero__quick-jump quick-jump">
+										<button type="button" class="quick-jump__button">
+											<span>Быстрый переход:</span>
+											<p class="quick-jump__text">Design, начинающим, удаленная работа, работа за
+												границей.</p>
+										</button>
+									</div>
+									<a href="#" class="hero__link hero__link_green">Мировая практика</a>
+									<a href="#" class="hero__link hero__link_2">Работа за границей</a>
+								</div>
 							</div>
+						</div>
+						<div class="swiper-pagination swiper-pagination_hero"></div>
 					</div>
+					<div class=" hero__items">
+						<div class="hero__item item-hero">
+							<div class="item-hero__count">4 489</div>
+							<span class="item-hero__value">вакансий уже тут</span>
+						</div>
+						<div class="hero__item item-hero">
+							<div class="item-hero__count">1 461</div>
+							<span class="item-hero__value">курс для получения и развития <br> навыков</span>
+						</div>
+						<div class="hero__item item-hero">
+							<div class="item-hero__count">222 994 <span>грн</span></div>
+							<span class="item-hero__value">средняя зарплата в IT сегменте</span>
+						</div>
+						<div class="hero__item item-hero">
+							<div class="item-hero__count">1 129</div>
+							<span class="item-hero__value">компаний ищут сотрудников <br> прямо сейчас</span>
+						</div>
+					</div>
+				</div>
 			</section>
 			<section class="information">
 				<div class="information__container">
 					<div class="information__block block-information">
 						<div class="block-information__header">
-							<h2 class="block-information__subtitle subtitle subtitle_white">Новые вакансии</h2>
+							<h2 class="block-information__subtitle">Новые вакансии</h2>
 							<div class="block-information__actions">
 								<button class="block-information__button">Новые</button>
 								<button class="block-information__button block-information__button_archive">Архив</button>
@@ -167,11 +200,12 @@
 								</div>
 							</div>
 						</div>
-						<a href="#" class="block-information__button-readmore _icon-right-arrow button-readmore">Смотреть все вакансии</a>
+						<a href="#" class="block-information__button-readmore _icon-right-arrow button-readmore">Смотреть все
+							вакансии</a>
 					</div>
 					<div class="information__block block-information">
 						<div class="block-information__header">
-							<h2 class="block-information__subtitle subtitle subtitle_white">Новые Резюме</h2>
+							<h2 class="block-information__subtitle">Новые Резюме</h2>
 							<div class="block-information__actions">
 								<button class="block-information__button">Новые</button>
 								<button class="block-information__button block-information__button_archive">Архив</button>
@@ -200,13 +234,13 @@
 											<picture><source srcset="img/view-pages/mobile-avatar.webp" type="image/webp"><img src="img/view-pages/mobile-avatar.png" alt="image"></picture>
 										</div>
 										<div class="block-information__content content-block">
-											<div class="content-block__topic">Junior Front End Developer</div>
+											<div class="content-block__topic">Spark+Scala (Big Data) developer, remote only</div>
 											<div class="content-block__items">
 												<div class="content-block__country">Україна</div>
 												<div class="content-block__city">Львів, віддалено</div>
 												<div class="content-block__price">$800</div>
-												<div class="content-block__experience">1,5 роки досвіду</div>
-												<div class="content-block__level">Intermediate</div>
+												<div class="content-block__experience">Більше 10 років досвіду</div>
+												<div class="content-block__level">Upper Intermediate</div>
 											</div>
 										</div>
 									</div>
@@ -215,7 +249,7 @@
 											<picture><source srcset="img/view-pages/mobile-avatar.webp" type="image/webp"><img src="img/view-pages/mobile-avatar.png" alt="image"></picture>
 										</div>
 										<div class="block-information__content content-block">
-											<div class="content-block__topic">Junior Front End Developer</div>
+											<div class="content-block__topic">Junior QA Engineer</div>
 											<div class="content-block__items">
 												<div class="content-block__country">Україна</div>
 												<div class="content-block__city">Львів, віддалено</div>
@@ -273,14 +307,80 @@
 								</div>
 							</div>
 						</div>
-						<a href="#" class="block-information__button-readmore _icon-right-arrow button-readmore">Смотреть все вакансии</a>
+						<a href="#" class="block-information__button-readmore _icon-right-arrow button-readmore">Смотреть все
+							вакансии</a>
+					</div>
+				</div>
+			</section>
+			<section class="vacancies-by-category">
+				<div class="vacancies-by-category__container">
+					<div class="vacancies-by-category__header">
+						<div class="vacancies-by-category__content">
+							<h2 class="vacancies-by-category__subtitle subtitle subtitle_white subtitle_big">Вакансии по категориям</h2>
+							<p class="vacancies-by-category__description">Делимся вакансиями для получения лучшей работы вашей жизни</p>
+						</div>
+						<div class="vacancies-by-category__cta">
+							<a href="#" class="vacancies-by-category__how-correct">Как правильно написать резюме?</a>
+						</div>
+					</div>
+					<div class="vacancies-by-category__wrapper">
+						<ul class="vacancies-by-category__list">
+							<li>
+								Java
+							</li>
+							<li>
+								.NET
+							</li>
+							<li>
+								Python
+							</li>
+							<li>
+								Ruby
+							</li>
+							<li>
+								iOS/macOS
+							</li>
+							<li>
+								PHP
+							</li>
+							<li>
+								Android
+							</li>
+							<li>
+								C++
+							</li>
+							<li>
+								Android
+							</li>
+							<li>
+								QA
+							</li>
+							<li>
+								Front End
+							</li>
+							<li>
+								Design
+							</li>
+							<li>
+								За границей
+							</li>
+							<li>
+								Начинающим
+							</li>
+						</ul>
+						<div class="vacancies-by-category__image">
+							<picture><source srcset="img/hero/user-image.webp" type="image/webp"><img src="img/hero/user-image.png" alt="image"></picture>
+							<div data-da=".vacancies-by-category__container,840,last" class="vacancies-by-category__cta vacancies-by-category__cta_position">
+								<a href="#" class="vacancies-by-category__how-correct">Как правильно написать резюме?</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 			<section class="current-salaries">
 				<div class="current-salaries__container">
 					<div class="current-salaries__header">
-						<h2 class="current-salaries__subtitle subtitle subtitle_white">Следи за актуальными зарплатами</h2>
+						<h2 class="current-salaries__subtitle">Следи за актуальными зарплатами</h2>
 						<p class="current-salaries__description">Следи за актуальными зарплатами</p>
 					</div>
 					<div class="current-salaries__slider swiper">
@@ -428,12 +528,83 @@
 						</div>
 						<button aria-label="next-slide-button" type="button" class="swiper-button-next swiper-button-next_current-salaries _icon-arrow-down"></button>
 					</div>
+					<a href="#" class="current-salaries__button-readmore button-readmore _icon-right-arrow">Больше данных</a>
+				</div>
+			</section>
+			<section class="news news_home">
+				<div class="news__container">
+					<div class="news__header">
+						<h2 class="news__subtitle subtitle subtitle_white subtitle_big">Новости</h2>
+						<div class="header-block__actions">
+							<form action="#" class="header-block__popular">
+								<select name="form[]" class="form">
+									<option value="1" selected>Популярное</option>
+									<option value="2">Пункт №1</option>
+									<option value="3">Пункт №2</option>
+									<option value="4">Пункт №3</option>
+								</select>
+							</form>
+							<button type="button" class="header-block__new">Новое</button>
+						</div>
+					</div>
+					<div data-mobile="false" class="news__slider swiper">
+						<div class="news__wrapper swiper-wrapper">
+							<div class="news__slide swiper-slide">
+								<div class="news__card card-news">
+									<div class="card-news__content">
+										<time datetime="2022-01-08" class="card-news__date date">08 янв 2022</time>
+										<div class="card-news__label card-news__label_white">
+											Темная тема на сайте: инструкция
+											по применению
+										</div>
+										<p class="card-news__text card-news__text_white">
+											Вслед за Apple и Google многие компании начали добавлять
+											в свои приложения и на сайты темную тему. Она помогает
+											брендам выделиться...
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="news__slide swiper-slide">
+								<div class="news__card card-news">
+									<div class="card-news__content">
+										<time datetime="2022-01-08" class="card-news__date date">08 янв 2022</time>
+										<div class="card-news__label card-news__label_white">
+											Темная тема на сайте: инструкция
+											по применению
+										</div>
+										<p class="card-news__text card-news__text_white">
+											Вслед за Apple и Google многие компании начали добавлять
+											в свои приложения и на сайты темную тему. Она помогает
+											брендам выделиться...
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="news__slide swiper-slide">
+								<div class="news__card card-news">
+									<div class="card-news__content">
+										<time datetime="2022-01-08" class="card-news__date date">08 янв 2022</time>
+										<div class="card-news__label card-news__label_white">
+											Темная тема на сайте: инструкция
+											по применению
+										</div>
+										<p class="card-news__text card-news__text_white">
+											Вслед за Apple и Google многие компании начали добавлять
+											в свои приложения и на сайты темную тему. Она помогает
+											брендам выделиться...
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 			<section class="blogs blogs_main">
 				<div class="blogs__container">
 					<div class="blogs__header">
-						<h2 class="blogs__subtitle subtitle subtitle_white">Блог</h2>
+						<h2 class="blogs__subtitle subtitle subtitle_white subtitle_big">Блог</h2>
 						<p class="blogs__description">Делимся полезным для получения лучшей работы в вашей жизни</p>
 					</div>
 					<nav class="blogs__navigation blogs__navigation_for-dark-version">
@@ -608,6 +779,64 @@
 					</div>
 				</div>
 			</section>
+			<section class="add-vacancy add-vacancy_main">
+				<div class="add-vacancy__container">
+					<div class="add-vacancy__slider swiper">
+						<div class="add-vacancy__wrapper swiper-wrapper">
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/01.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/01.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/02.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/02.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/03.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/03.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/04.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/04.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/01.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/01.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/02.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/02.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/03.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/03.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/04.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/04.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/01.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/01.png" alt="image"></picture>
+								</div>
+							</div>
+							<div class="add-vacancy__slide swiper-slide">
+								<div class="add-vacancy__image">
+									<picture><source data-srcset="img/rates/add-vacancy/02.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/rates/add-vacancy/02.png" alt="image"></picture>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
@@ -725,7 +954,7 @@
 		</div>
 	</div>
 </div> -->
-	<script src="js/app.min.js?_v=20231221195044"></script>
+	<script src="js/app.min.js?_v=20231222045109"></script>
 </body>
 
 </html>
