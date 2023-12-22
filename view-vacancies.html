@@ -4,7 +4,7 @@
 <head>
 	<title>Просмотр вакансии</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/style.min.css?_v=20231222170847">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231222190117">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -22,7 +22,7 @@
 					<nav class="menu__body">
 						<div hidden class="menu__header">
 							<button aria-label="close-menu" class="menu__close _icon-close"></button>
-							<button data-da=".menu__header,845,2" type="button" class="sign-in _icon-sign-in">Вход</button>
+							<button data-popup="#popup" data-da=".menu__header,845,2" type="button" class="sign-in _icon-sign-in">Вход</button>
 							<button aria-label="search" class="menu__search _icon-search"></button>
 						</div>
 						<ul class="menu__list">
@@ -35,7 +35,7 @@
 					</nav>
 				</div>
 				<div class="header__actions">
-					<button type="button" class="sign-in sign-in_desktop _icon-sign-in">Вход</button>
+					<button data-popup="#popup" type="button" class="sign-in sign-in_desktop _icon-sign-in">Вход</button>
 				</div>
 			</div>
 		</header>
@@ -454,17 +454,52 @@
 			</div>
 		</footer>
 	</div>
-	<!-- <div id="popup" aria-hidden="true" class="popup">
-	<div class="popup__wrapper">
-		<div class="popup__content">
-			<button data-close type="button" class="popup__close">Закрыть</button>
-			<div class="popup__text">
-				Text
+	<div id="popup" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button aria-label="close-popup" data-close type="button" class="popup__close _icon-close"></button>
+				<h2 class="popup__subtitle subtitle">Aвторизация</h2>
+				<form action="#" class="popup__form">
+					<div class="popup__line">
+						<input placeholder="Введите свой логин" type="text" class="popup__input input">
+					</div>
+					<div class="popup__line">
+						<input placeholder="Введите свой пароль" type="text" class="popup__input input">
+					</div>
+					<div class="checkbox">
+						<input id="c_111" class="checkbox__input" type="checkbox" value="1" name="form[]">
+						<label for="c_111" class="checkbox__label"><span class="checkbox__text">Запомнить</span></label>
+					</div>
+					<div class="popup__actions">
+						<button type="submit" class="popup__button-readmore button-readmore _icon-right-arrow"">Войти на сайт</button>
+					<div class=" popup__item">
+							<span class="popup__label">Забылы пароль?</span>
+							<a href="#" class="popup__link">Нажмите для восстановления</a>
+					</div>
+					<div class="popup__label">или войти через</div>
+					<ul class="popup__social social">
+						<li>
+							<a aria-label="facebook" class="social__facebook" href="#">
+								<span style="--icon-facebook: url(img/icons/facebook.svg)"></span>
+							</a>
+						</li>
+						<li>
+							<a aria-label="twitter" class="social__twitter" href="#">
+								<span style="--icon-twitter: url(img/icons/twitter.svg)"></span>
+							</a>
+						</li>
+						<li>
+							<a aria-label="google-plus" class="social__google-plus" href="#">
+								<span style="--icon-google-plus: url(img/icons/google-plus.svg)"></span>
+							</a>
+						</li>
+					</ul>
 			</div>
+			</form>
 		</div>
 	</div>
-</div> -->
-	<script src="js/app.min.js?_v=20231222170847"></script>
+	</div>
+	<script src="js/app.min.js?_v=20231222190117"></script>
 </body>
 
 </html>
