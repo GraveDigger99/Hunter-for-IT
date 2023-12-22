@@ -4,7 +4,7 @@
 <head>
 	<title>Главная</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/style.min.css?_v=20231222045109">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231222133335">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -86,7 +86,7 @@
 								<div class="hero__body">
 									<h1 class="hero__title title title_white">Всегда свежие вакансии</h1>
 									<p class="hero__text">Только вы решаете, кому и когда открыть контакты.</p>
-									<a href="#" class="hero__button button-readmore button-readmore _icon-right-arrow"">Добавить вакансию</a>
+									<a href="#" class="hero__button button-readmore button-readmore _icon-right-arrow">Добавить вакансию</a>
 									<a href=" #" class="hero__link hero__link_3">Технологии</a>
 									<a href="#" class="hero__link hero__link_4">[Искусственный
 										интелект]</a>
@@ -98,9 +98,9 @@
 									</form>
 									<div class="hero__quick-jump quick-jump">
 										<button type="button" class="quick-jump__button">
-											<span>Быстрый переход:</span>
-											<p class="quick-jump__text">Design, начинающим, удаленная работа, работа за
-												границей.</p>
+											<span class="quick-jump__label">Быстрый переход:</span>
+											<span class="quick-jump__text">Design, начинающим, удаленная работа, работа за
+												границей.</span>
 										</button>
 									</div>
 									<a href="#" class="hero__link hero__link_green">Мировая практика</a>
@@ -369,7 +369,7 @@
 							</li>
 						</ul>
 						<div class="vacancies-by-category__image">
-							<picture><source srcset="img/hero/user-image.webp" type="image/webp"><img src="img/hero/user-image.png" alt="image"></picture>
+							<picture><source data-srcset="img/hero/user-image.webp" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" type="image/webp"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="  data-src="img/hero/user-image.png" alt="image"></picture>
 							<div data-da=".vacancies-by-category__container,840,last" class="vacancies-by-category__cta vacancies-by-category__cta_position">
 								<a href="#" class="vacancies-by-category__how-correct">Как правильно написать резюме?</a>
 							</div>
@@ -743,7 +743,7 @@
 						<h2 class="tariffs__subtitle subtitle subtitle_white">Тарифы</h2>
 						<p class="tariffs__description">Делимся вакансиями для получения лучшей работы вашей жизни</p>
 					</div>
-					<div class="tariffs__slider swiper">
+					<div data-mobile="false" class="tariffs__slider swiper">
 						<div class="tariffs__wrapper swiper-wrapper">
 							<div class="tariffs__slide swiper-slide">
 								<article class="tariffs__card tariffs__card_1">
@@ -752,7 +752,7 @@
 										<p class="tariffs__info"><span>1.5 млн.</span> Отзывов на вакансию</p>
 									</div>
 									<p class="tariffs__price">от <span>136 грн.</span> в месяц</p>
-									<a href="" class="tariffs__button button">Купить</a>
+									<a href="#" class="tariffs__button button">Купить</a>
 								</article>
 							</div>
 							<div class="tariffs__slide swiper-slide">
@@ -762,7 +762,7 @@
 										<p class="tariffs__info"><span>33.6 млн.</span> Отзывов на вакансию</p>
 									</div>
 									<p class="tariffs__price">от <span>210 грн.</span> в месяц</p>
-									<a href="" class="tariffs__button button">Купить</a>
+									<a href="#" class="tariffs__button button">Купить</a>
 								</article>
 							</div>
 							<div class="tariffs__slide swiper-slide">
@@ -772,16 +772,16 @@
 										<p class="tariffs__info"><span>150 млн.</span> Отзывов на вакансию</p>
 									</div>
 									<p class="tariffs__price">от <span>450 грн.</span> в месяц</p>
-									<a href="" class="tariffs__button button button_black">Купить</a>
+									<a href="#" class="tariffs__button button button_black">Купить</a>
 								</article>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<section class="add-vacancy add-vacancy_main">
+			<div class="add-vacancy add-vacancy_main">
 				<div class="add-vacancy__container">
-					<div class="add-vacancy__slider swiper">
+					<div data-mobile="false" class="add-vacancy__slider swiper">
 						<div class="add-vacancy__wrapper swiper-wrapper">
 							<div class="add-vacancy__slide swiper-slide">
 								<div class="add-vacancy__image">
@@ -836,7 +836,7 @@
 						</div>
 					</div>
 				</div>
-			</section>
+			</div>
 		</main>
 		<footer class="footer">
 			<div class="footer__container">
@@ -954,7 +954,7 @@
 		</div>
 	</div>
 </div> -->
-	<script src="js/app.min.js?_v=20231222045109"></script>
+	<script src="js/app.min.js?_v=20231222133335"></script>
 </body>
 
 </html>
