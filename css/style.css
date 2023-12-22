@@ -4155,7 +4155,6 @@ body::after {
 
 .add-vacancy {
   padding-top: 4.625rem;
-  padding-bottom: 4.625rem;
 }
 
 .add-vacancy_main {
@@ -5247,6 +5246,10 @@ body::after {
 
   .advertising-contact__info {
     font-weight: 700;
+  }
+
+  .add-vacancy {
+    padding-bottom: 4.625rem;
   }
 
   .add-vacancy__wrapper {
@@ -6512,6 +6515,10 @@ body::after {
     font-size: 2.1875rem;
   }
 
+  .add-vacancy__slider:not(:last-child) {
+    margin-bottom: 3.75rem;
+  }
+
   .no-webp .company-info__top{
     background: url("../img/company/bg.png") left/cover no-repeat; }
 
@@ -7306,6 +7313,10 @@ body::after {
 
   .add-vacancy__subtitle:not(:last-child) {
     margin-bottom: 2.8125rem;
+  }
+
+  .add-vacancy__slider:not(:last-child) {
+    margin-bottom: 2.5rem;
   }
 
   .add-vacancy__slider {

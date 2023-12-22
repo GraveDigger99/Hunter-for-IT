@@ -5048,6 +5048,10 @@
                                     slidesPerView: 1.5,
                                     spaceBetween: 20
                                 },
+                                350: {
+                                    slidesPerView: 2.1,
+                                    spaceBetween: 30
+                                },
                                 479: {
                                     slidesPerView: 2.2,
                                     spaceBetween: 30
