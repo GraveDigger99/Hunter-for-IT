@@ -214,6 +214,7 @@
   --googlePlusColor: #dd4b39;
   --bgLoadedColor: #333;
   --mainRed: #e4264c;
+  --vkColor: #4C75A3;
 }
 
 * {
@@ -321,6 +322,11 @@ h6 {
 .page_rates {
   background-color: var(--pageColor);
   padding-top: 7.25rem;
+}
+
+.page_view-blog,
+.page_rates {
+  padding-bottom: 3.75rem;
 }
 
 .wrapper {
@@ -458,6 +464,7 @@ h6 {
 
 .select_range .select__option {
   color: #554f58;
+  border-radius: 0.9375rem;
   font-size: 0.8125rem;
 }
 
@@ -571,7 +578,6 @@ h6 {
   cursor: pointer;
   color: var(--mainWhite);
   padding: 5px 15px;
-  border-radius: 0.9375rem;
   -webkit-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
 }
@@ -962,6 +968,17 @@ h6 {
 .social__google-plus span {
   mask: var(--icon-google-plus) center center/contain no-repeat;
   -webkit-mask: var(--icon-google-plus) center center/contain no-repeat;
+  background-color: var(--mainWhite);
+}
+
+.social__vk {
+  background-color: var(--vkColor);
+  border: 1px solid transparent;
+}
+
+.social__vk span {
+  mask: var(--icon-vk) center center/contain no-repeat;
+  -webkit-mask: var(--icon-vk) center center/contain no-repeat;
   background-color: var(--mainWhite);
 }
 
@@ -2902,6 +2919,10 @@ h6 {
   font-size: 1.25rem;
 }
 
+.similar-vacancies {
+  padding-bottom: 3.75rem;
+}
+
 .similar-vacancies__subtitle:not(:last-child) {
   margin-bottom: 2.3125rem;
 }
@@ -3863,7 +3884,6 @@ h6 {
 }
 
 .advertising-contact__body {
-  max-width: 27.5rem;
   margin: 0 auto;
   text-align: center;
 }
@@ -3907,6 +3927,7 @@ h6 {
 .advertising-contact__info {
   color: #252226;
   font-size: 1.25rem;
+  line-height: 120%;
 }
 
 .add-vacancy {
@@ -3916,6 +3937,10 @@ h6 {
 
 .add-vacancy__subtitle {
   text-align: center;
+  font-size: 1.6875rem;
+  max-width: 65.625rem;
+  line-height: 130%;
+  margin: 0 auto;
 }
 
 .add-vacancy__subtitle:not(:last-child) {
@@ -4890,7 +4915,6 @@ h6 {
   }
 
   .create-blog {
-    padding-top: 4.375rem;
     padding-bottom: 3.75rem;
   }
 
@@ -4996,6 +5020,10 @@ h6 {
 
   .advantages__label {
     font-size: 1.5625rem;
+  }
+
+  .advertising-contact__body {
+    max-width: 27.5rem;
   }
 
   .advertising-contact__info {
@@ -5548,6 +5576,21 @@ h6 {
   .hero__link_4 {
     bottom: -40%;
     right: 10%;
+  }
+
+  .no-webp .vacancies-by-category::before{
+    background: url("../img/hero/decor-line.png") center/cover no-repeat; }
+
+  .vacancies-by-category::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    width: 51.0625rem;
+    height: 105.375rem;
   }
 
   .info-block__inner {
@@ -6654,6 +6697,10 @@ h6 {
     display: none;
   }
 
+  .blogs__subtitle {
+    font-size: 2.1875rem;
+  }
+
   .info-table__header {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
@@ -7008,12 +7055,17 @@ h6 {
   }
 
   .advertising-contact__telegram-contact {
-    gap: 0.625rem;
+    gap: 0.9375rem;
+    text-align: left;
   }
 
   .advertising-contact__info {
     font-size: 1.125rem;
     font-weight: 400;
+  }
+
+  .add-vacancy__subtitle {
+    font-size: 1.4375rem;
   }
 
   .add-vacancy__subtitle:not(:last-child) {
@@ -7105,8 +7157,12 @@ h6 {
     font-size: 1.125rem;
   }
 
+  .skills-in-demand {
+    padding-bottom: 3.75rem;
+  }
+
   .skills-in-demand__items li {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     padding: 0.625rem 0.9375rem;
   }
 
@@ -7415,6 +7471,10 @@ h6 {
         -ms-transform: translate(-30%, 60%);
             transform: translate(-30%, 60%);
   }
+
+  .skills-in-demand__items li {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 29.99875em) and (any-hover: hover) {
@@ -7618,6 +7678,15 @@ h6 {
     background-color: var(--googlePlusColor);
   }
 
+  .social__vk:hover {
+    border: 1px solid var(--vkColor);
+    background-color: var(--mainWhite);
+  }
+
+  .social__vk:hover span {
+    background-color: var(--vkColor);
+  }
+
   .menu__link:hover::after {
     content: "";
     width: 100%;
@@ -7818,6 +7887,11 @@ h6 {
 @media (min-width: 61.99875em){
 
   .webp .company-info__top{ background: url(../img/company/bg.webp) right/cover no-repeat; }
+}
+
+@media (min-width: 87.3125em){
+
+  .webp .vacancies-by-category::before{ background: url(../img/hero/decor-line.webp) center/cover no-repeat; }
 }
 
 @media (min-width: 87.3125em){
