@@ -1282,17 +1282,17 @@ h6 {
   gap: 0.625rem;
 }
 
-.quick-jump__button {
+.quick-jump__label {
+  -webkit-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  color: #b1a6b6;
+}
+
+.quick-jump__text {
   font-size: 0.9375rem;
   color: var(--mainWhite);
   -webkit-transition: all 0.5s ease 0s;
   transition: all 0.5s ease 0s;
-}
-
-.quick-jump__button span {
-  -webkit-transition: all 0.5s ease 0s;
-  transition: all 0.5s ease 0s;
-  color: #b1a6b6;
 }
 
 .no-webp .tariffs{
@@ -1966,6 +1966,12 @@ h6 {
   position: absolute;
   bottom: 0;
   max-width: 100%;
+  width: 26.8125rem;
+  height: 26.5625rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 .news {
@@ -3930,7 +3936,7 @@ h6 {
 }
 
 .add-vacancy_main {
-  padding-bottom: 0;
+  padding-bottom: 3.75rem;
 }
 
 .add-vacancy__slider:not(:last-child) {
@@ -3939,10 +3945,6 @@ h6 {
 
 .add-vacancy__image {
   text-align: center;
-}
-
-.add-vacancy__image img {
-  max-width: 100%;
 }
 
 .company-info {
@@ -4510,6 +4512,10 @@ h6 {
 
   .result-of-competition__value:not(:last-child) {
     margin-bottom: 1.375rem;
+  }
+
+  .add-vacancy__image img {
+    max-width: 100%;
   }
 }
 
@@ -6056,6 +6062,10 @@ h6 {
             align-items: flex-start;
   }
 
+  .vacancies-by-category__header:not(:last-child) {
+    margin-bottom: 3.125rem;
+  }
+
   .vacancies-by-category__header {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -7300,6 +7310,15 @@ h6 {
     font-size: 1rem;
   }
 
+  .vacancies-by-category__image img {
+    height: 19.75rem;
+    width: 20rem;
+  }
+
+  .vacancies-by-category__image {
+    height: 17.5rem;
+  }
+
   .news {
     padding-bottom: 3.75rem;
   }
@@ -7369,6 +7388,10 @@ h6 {
 
   .advertising-posts__text {
     font-size: 0.875rem;
+  }
+
+  .add-vacancy__image img {
+    width: 12.5rem;
   }
 
   .company-info__item {
