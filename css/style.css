@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Roboto:regular,700&display=swap);
 
 @charset "UTF-8";
 
@@ -319,6 +319,7 @@ h6 {
 .page_view-vacancies,
 .page_view-news,
 .page_vacancies,
+.page_contact,
 .page_rates {
   background-color: var(--pageColor);
   padding-top: 7.25rem;
@@ -597,6 +598,154 @@ h6 {
 
 ._select-tag {
   cursor: pointer;
+}
+
+body::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.8s ease 0s;
+  transition: opacity 0.8s ease 0s;
+  pointer-events: none;
+  z-index: 149;
+}
+
+.popup-show body::after {
+  opacity: 1;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 30px 10px;
+  -webkit-transition: visibility 0.8s ease 0s;
+  transition: visibility 0.8s ease 0s;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.popup_show {
+  z-index: 150;
+  visibility: visible;
+  overflow: auto;
+  pointer-events: auto;
+}
+
+.popup_show .popup__content {
+  visibility: visible;
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+}
+
+.popup__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  align-items: center;
+}
+
+.popup__content {
+  visibility: hidden;
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: -webkit-transform 0.3s ease 0s;
+  transition: -webkit-transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s;
+  transition: transform 0.3s ease 0s, -webkit-transform 0.3s ease 0s;
+  background-color: #eee;
+  padding: 3.75rem 1.875rem 1.875rem 1.875rem;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 20px;
+}
+
+.lock .popup__content {
+  visibility: visible;
+}
+
+.popup__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  -webkit-transition: color 0.5s ease 0s;
+  transition: color 0.5s ease 0s;
+  color: var(--mainGreen);
+}
+
+.popup__subtitle {
+  text-align: center;
+}
+
+.popup__subtitle:not(:last-child) {
+  margin-bottom: 3.125rem;
+}
+
+.popup__actions {
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  gap: 1.875rem;
+}
+
+.popup__line:not(:last-child) {
+  margin-bottom: 1.25rem;
+}
+
+.popup__input {
+  font-size: 0.9375rem;
+  width: 100%;
+  padding: 0.9375rem 1.875rem;
+  border-radius: 1.875rem;
+  border: 1px solid #c0c0c0;
+}
+
+.popup__button-readmore {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.popup__label {
+  color: #554f58;
+}
+
+.popup__link {
+  line-height: 120%;
+  -webkit-transition: color 0.5s ease 0s;
+  transition: color 0.5s ease 0s;
+}
+
+.popup__social {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 [class*=-ibg] {
@@ -984,6 +1133,71 @@ h6 {
 
 .swiper-slide-visible {
   visibility: visible !important;
+}
+
+@-webkit-keyframes fadeinup {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(0, 20%);
+            transform: translate(0, 20%);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@keyframes fadeinup {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(0, 20%);
+            transform: translate(0, 20%);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+[fadeinup]._watcher-view {
+  -webkit-animation: fadeinup 1s ease-in-out;
+          animation: fadeinup 1s ease-in-out;
+}
+
+.contacts {
+  padding-bottom: 3.75rem;
+}
+
+.contacts__title:not(:last-child) {
+  margin-bottom: 2.5rem;
+}
+
+.contacts__list li:not(:last-child) {
+  margin-bottom: 1.25rem;
+}
+
+.contacts__list:not(:last-child) {
+  margin-bottom: 3.75rem;
+}
+
+.contacts__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.625rem;
+  font-size: 1.125rem;
+  color: #3e3940;
+}
+
+.contacts__link::before {
+  color: var(--mainGreen);
 }
 
 .header {
@@ -3078,17 +3292,6 @@ h6 {
   margin-bottom: 1.875rem;
 }
 
-.publications__wrapper img {
-  max-width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  max-width: 100%;
-  width: 100%;
-  height: 20.75rem;
-  -o-object-position: center;
-     object-position: center;
-}
-
 .publications__topic {
   color: #3e3940;
   font-size: 1.25rem;
@@ -3100,14 +3303,26 @@ h6 {
   margin-bottom: 1.875rem;
 }
 
-.publications__image:not(:last-child) {
-  margin-bottom: 1.875rem;
+.publications__image {
+  text-align: center;
 }
 
 .publications__image img {
   max-width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  width: 100%;
+  min-height: 15.625rem;
+}
+
+.publications__image_2:not(:last-child) {
+  margin-bottom: 1.875rem;
+}
+
+.publications__image_2 img {
+  height: 100%;
 }
 
 .publications__list_bullet:not(:last-child) {
@@ -3614,9 +3829,15 @@ h6 {
 }
 
 .rate-info-cards__icon {
-  color: var(--mainGreen);
-  font-size: 4.375rem;
+  display: inline-block;
+  color: red;
+  min-width: 70px;
+  min-height: 70px;
   -webkit-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  mask: var(--icon-card) center center/contain no-repeat;
+  -webkit-mask: var(--icon-card) center center/contain no-repeat;
+  background-color: var(--mainGreen);
   transition: all 0.5s ease 0s;
 }
 
@@ -3928,6 +4149,8 @@ h6 {
   color: #252226;
   font-size: 1.25rem;
   line-height: 120%;
+  -webkit-transition: color 0.5s ease 0s;
+  transition: color 0.5s ease 0s;
 }
 
 .add-vacancy {
@@ -5408,10 +5631,6 @@ h6 {
     gap: 1.875rem;
   }
 
-  .publications__wrapper img {
-    max-width: 50%;
-  }
-
   .comments__item {
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -5601,8 +5820,10 @@ h6 {
     font-size: 1.25rem;
   }
 
-  .publications__wrapper img {
-    width: 420px;
+  .publications__image_1 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 26.25rem;
+            flex: 0 0 26.25rem;
   }
 
   .rate-info-cards__card {
@@ -5898,8 +6119,10 @@ h6 {
             flex-direction: column;
   }
 
-  .publications__wrapper img {
-    margin: 0 auto;
+  .publications__image_1 img {
+    width: 25rem;
+    height: 28.125rem;
+    height: 100%;
   }
 
   .rate-info-cards__card {
@@ -6255,10 +6478,6 @@ h6 {
     margin-bottom: 3.125rem;
   }
 
-  .rate-info-cards__icon {
-    font-size: 2.5rem;
-  }
-
   .rate-info-cards__text {
     font-size: 1.125rem;
   }
@@ -6475,6 +6694,14 @@ h6 {
 }
 
 @media (max-width: 47.99875em) {
+  .popup__content {
+    padding: 3.75rem 1.25rem 1.875rem 1.25rem;
+  }
+
+  .popup__subtitle:not(:last-child) {
+    margin-bottom: 1.875rem;
+  }
+
   .cta_rate {
     padding-bottom: 4.6875rem;
   }
@@ -6501,6 +6728,10 @@ h6 {
 
   .swiper-pagination_hero {
     display: none;
+  }
+
+  .contacts__list:not(:last-child) {
+    margin-bottom: 2.5rem;
   }
 
   .footer {
@@ -6983,6 +7214,11 @@ h6 {
 
   .rate-info-cards__card {
     min-height: 7.8125rem;
+  }
+
+  .rate-info-cards__icon {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
   }
 
   .rate-info-cards__text {
@@ -7604,6 +7840,14 @@ h6 {
     background: var(--mainGreen);
   }
 
+  .popup__close:hover {
+    color: var(--mainBlack);
+  }
+
+  .popup__link:hover {
+    color: var(--mainGreen);
+  }
+
   .button-readmore:hover {
     border: 1px solid var(--mainGreen);
     background-color: var(--mainWhite);
@@ -7812,12 +8056,19 @@ h6 {
     background-color: var(--mainGreen);
   }
 
-  .rate-info-cards__card:hover .rate-info-cards__icon,
+  .rate-info-cards__card:hover .rate-info-cards__icon {
+    background-color: var(--mainWhite);
+  }
+
   .rate-info-cards__card:hover .rate-info-cards__text {
     color: var(--mainWhite);
   }
 
   .advertising-contact__mail:hover {
+    color: var(--mainGreen);
+  }
+
+  .advertising-contact__info:hover {
     color: var(--mainGreen);
   }
 }
