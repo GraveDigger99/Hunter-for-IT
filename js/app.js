@@ -4846,7 +4846,7 @@
                 spaceBetween: 25,
                 speed: 800,
                 pagination: {
-                    el: ".swiper-pagination",
+                    el: ".similar-pagination",
                     clickable: true
                 },
                 breakpoints: {
