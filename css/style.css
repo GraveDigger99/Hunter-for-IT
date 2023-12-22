@@ -4158,6 +4158,10 @@ body::after {
   padding-bottom: 4.625rem;
 }
 
+.add-vacancy_main {
+  padding-bottom: 3.75rem;
+}
+
 .add-vacancy__subtitle {
   text-align: center;
   font-size: 1.6875rem;
@@ -4183,16 +4187,8 @@ body::after {
           justify-content: center;
 }
 
-.add-vacancy_main {
-  padding-bottom: 3.75rem;
-}
-
 .add-vacancy__slider:not(:last-child) {
   margin-bottom: 5.625rem;
-}
-
-.add-vacancy__image {
-  text-align: center;
 }
 
 .company-info {
@@ -5267,6 +5263,10 @@ body::after {
        -moz-column-gap: 1.875rem;
             column-gap: 1.875rem;
     row-gap: 3.125rem;
+  }
+
+  .add-vacancy__image {
+    text-align: center;
   }
 
   .company-employees__wrapper {
@@ -7308,10 +7308,27 @@ body::after {
     margin-bottom: 2.8125rem;
   }
 
+  .add-vacancy__slider {
+    height: 150px !important;
+  }
+
   .add-vacancy__wrapper {
     -webkit-box-align: center !important;
         -ms-flex-align: center !important;
             align-items: center !important;
+  }
+
+  .add-vacancy__slide {
+    height: calc((100% - 30px) / 2) !important;
+  }
+
+  .swiper-grid-column > .swiper-wrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
   .company-info__top {
@@ -7683,7 +7700,7 @@ body::after {
   }
 
   .add-vacancy__image img {
-    width: 12.5rem;
+    width: 9.375rem;
   }
 
   .company-info__item {
