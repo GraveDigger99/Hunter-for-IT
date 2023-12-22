@@ -4,7 +4,7 @@
 <head>
 	<title>Главная</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="css/style.min.css?_v=20231222133335">
+	<link rel="stylesheet" href="css/style.min.css?_v=20231222144656">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -383,7 +383,7 @@
 						<h2 class="current-salaries__subtitle">Следи за актуальными зарплатами</h2>
 						<p class="current-salaries__description">Следи за актуальными зарплатами</p>
 					</div>
-					<div class="current-salaries__slider swiper">
+					<div data-mobile="false" class="current-salaries__slider swiper">
 						<div class="current-salaries__wrapper swiper-wrapper">
 							<div class="current-salaries__slide swiper-slide">
 								<div class="current-salaries__card">
@@ -539,9 +539,11 @@
 							<form action="#" class="header-block__popular">
 								<select name="form[]" class="form">
 									<option value="1" selected>Популярное</option>
-									<option value="2">Пункт №1</option>
-									<option value="3">Пункт №2</option>
-									<option value="4">Пункт №3</option>
+									<option value="2">За день</option>
+									<option value="3">За неделю</option>
+									<option value="4">За месяц</option>
+									<option value="5">За год</option>
+									<option value="6">За все время</option>
 								</select>
 							</form>
 							<button type="button" class="header-block__new">Новое</button>
@@ -604,7 +606,7 @@
 			<section class="blogs blogs_main">
 				<div class="blogs__container">
 					<div class="blogs__header">
-						<h2 class="blogs__subtitle subtitle subtitle_white subtitle_big">Блог</h2>
+						<h2 class="blogs__subtitle subtitle subtitle_white">Блог</h2>
 						<p class="blogs__description">Делимся полезным для получения лучшей работы в вашей жизни</p>
 					</div>
 					<nav class="blogs__navigation blogs__navigation_for-dark-version">
@@ -616,7 +618,7 @@
 						<button type="button" class="blogs__button">Бизнес</button>
 						<button type="button" class="blogs__button">Автоматизация</button>
 					</nav>
-					<div class="blogs__slider blogs__slider_not-transform swiper">
+					<div data-mobile="false" class="blogs__slider blogs__slider_not-transform swiper">
 						<div class="swiper-wrapper blogs__wrapper">
 							<div class="blogs__slide swiper-slide">
 								<div class="blogs__image">
@@ -954,7 +956,7 @@
 		</div>
 	</div>
 </div> -->
-	<script src="js/app.min.js?_v=20231222133335"></script>
+	<script src="js/app.min.js?_v=20231222144656"></script>
 </body>
 
 </html>
