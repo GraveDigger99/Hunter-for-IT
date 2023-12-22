@@ -6376,7 +6376,7 @@ body::after {
   }
 
   .blogs__button_all {
-    padding: 0.625rem 0.9375rem;
+    padding: 0.625rem 0.9375rem !important;
   }
 
   .blogs_transform-slider .blogs__wrapper {
